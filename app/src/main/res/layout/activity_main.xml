@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.a13.myapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="134dp"
+        android:layout_height="54dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="98dp"
+        tools:text="CalliVoice" />
+
+    <EditText
+        android:id="@+id/idtext1"
+        android:layout_width="262dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="아이디"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <EditText
+        android:id="@+id/idtext2"
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="361dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="265dp"
+        android:layout_height="38dp"
+        android:text="캘리보이스 시작하기"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="491dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="265"
+        android:layout_height="38"
+        android:text="회원 가입"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="448dp" />
+
+</android.support.constraint.ConstraintLayout>
