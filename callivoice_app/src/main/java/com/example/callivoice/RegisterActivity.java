@@ -1,8 +1,8 @@
 package com.example.callivoice;
 
-/**
- * Created by 13 디콘 김덕영 on 2018-04-06.
- */
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class RegisterActivity {
+public class RegisterActivity extends AppCompatActivity {
+
 }
