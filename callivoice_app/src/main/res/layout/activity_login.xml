@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    android:padding="20dp"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:autoText="false"
+        android:background="@drawable/textfield_email_password"
+        android:ems="10"
+        android:hint="이메일 "
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:cursorVisible="true"/>
+
+    <EditText
+        android:id="@+id/userPassword"
+        android:layout_width="290dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/userEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textfield_email_password"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textCursorDrawable="@null"
+        android:cursorVisible="true"/>
+
+    <Button
+        android:id="@+id/signinBtn"
+        android:layout_width="189dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/userPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/button_signin"
+        android:text="로그인" />
+</RelativeLayout>
