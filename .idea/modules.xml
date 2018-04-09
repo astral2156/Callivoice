@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/CalliVoice.iml" filepath="$PROJECT_DIR$/CalliVoice.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Callivoice-master.iml" filepath="$PROJECT_DIR$/Callivoice-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+>>>>>>> 9851687b9a217721d6e2b305e8475c2fb3d1bbd3
       <module fileurl="file://$PROJECT_DIR$/callivoice_app/callivoice_app.iml" filepath="$PROJECT_DIR$/callivoice_app/callivoice_app.iml" />
     </modules>
   </component>

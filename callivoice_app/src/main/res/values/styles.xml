@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+<<<<<<< HEAD
 
     <style name="splash" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
@@ -20,4 +21,7 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
+=======
+    <style name="splash" parent = "Theme.AppCompat.DayNight.NoActionBar"/>
+>>>>>>> 9851687b9a217721d6e2b305e8475c2fb3d1bbd3
 </resources>

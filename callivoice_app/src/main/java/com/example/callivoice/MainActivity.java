@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
         mSignoutBtn = (Button) findViewById(R.id.logoutBtn);
 
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
+=======
+        setContentView(R.layout.activity_register);
+>>>>>>> 9851687b9a217721d6e2b305e8475c2fb3d1bbd3
     }
 
 }
