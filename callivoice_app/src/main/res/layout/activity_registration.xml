@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity"
+    android:background="@drawable/bg_login">
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userEmail"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:theme="@style/EditTextStyle"
+        android:textCursorDrawable="@drawable/color_cursor"/>
+
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:textCursorDrawable="@drawable/color_cursor"/>
+
+    <EditText
+        android:id="@+id/userPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userPasswordRepeat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:textCursorDrawable="@drawable/color_cursor"/>
+
+    <EditText
+        android:id="@+id/userPasswordRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="133dp"
+        android:layout_marginTop="20dp"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:textCursorDrawable="@drawable/color_cursor"/>
+
+    <Button
+        android:id="@+id/signupBtn"
+        android:layout_width="215dp"
+        android:layout_height="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/button_signin"
+        android:text="가입하기"/>
+
+</RelativeLayout>

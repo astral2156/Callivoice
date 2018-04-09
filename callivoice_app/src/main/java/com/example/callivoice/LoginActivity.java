@@ -24,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUserEmail;
     private EditText mUserPassword;
     private Button mSigninBtn;
+    private Button mRegistrationBtn;
+    private Button mResetPasswordBtn;
 
 
     @Override
@@ -34,8 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mUserEmail = (EditText) findViewById(R.id.userEmail);
-        mUserPassword = (EditText) findViewById(R.id.userPassword);
+        mUserPassword = (EditText) findViewById(R.id.userPasswordRepeat);
         mSigninBtn = (Button) findViewById(R.id.signinBtn);
+        mRegistrationBtn = (Button) findViewById(R.id.registrationBtn);
+        mResetPasswordBtn = (Button) findViewById(R.id.resetPasswordBtn);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -50,6 +54,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startSignIn();
+            }
+        });
+
+        mRegistrationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+            }
+        });
+
+        mResetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
             }
         });
 
@@ -74,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(!task.isSuccessful()){
-                        Toast.makeText(LoginActivity.this, "Sign In Problem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "이메일이나 비밀번호 일치하지 않습니다", Toast.LENGTH_LONG).show();
                     }
                 }
             });
