@@ -50,30 +50,30 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
         public void startSignUp () {
+            if (!mUserPassword.getText().toString().equals(mUserPasswordRepeat.getText().toString())) {
+                Toast.makeText(RegistrationActivity.this, "비밀번호를 다시 입력해 주세요", Toast.LENGTH_LONG).show();
+                return;
+            } else {
                 final ProgressDialog progressDialog = ProgressDialog.show(RegistrationActivity.this, "잠시만 기다려 주세요...", "실행합니다...", true);
                 firebaseAuth.createUserWithEmailAndPassword(mUserEmail.getText().toString(), mUserPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
 
-                        if(task.isSuccessful()) {
+
+                        if (task.isSuccessful()) {
+
                             Toast.makeText(RegistrationActivity.this, "회원가입이 완료되었습니다", Toast.LENGTH_LONG).show();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                             startActivity(intent);
-                        }
-
-                        else {
-                                if (!mUserPassword.getText().toString().equals(mUserPasswordRepeat.getText().toString())) {
-                                     Toast.makeText(RegistrationActivity.this, "비밀번호를 다시 입력해 주세요", Toast.LENGTH_LONG).show();
-                                 }
-
-                                 Log.e("Error", task.getException().toString());
-                                 Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Log.e("Error", task.getException().toString());
+                            Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
 
+            }
         }
-
 }
