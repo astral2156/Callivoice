@@ -1,5 +1,6 @@
 package com.example.callivoice;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(ResetPasswordActivity.this, "비밀번호 재설정하기 위해서 이메일을 보냈습니다", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
                         }
                         else {
                             Toast.makeText(ResetPasswordActivity.this, "재설정 이메일을 보내지 못했습니다 ㅠ", Toast.LENGTH_LONG).show();
