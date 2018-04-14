@@ -45,6 +45,7 @@
         android:paddingLeft="15dp"
         android:textColorLink="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor" />
+
     <Button
         android:id="@+id/UserInfo"
         android:layout_width="wrap_content"
@@ -55,6 +56,7 @@
         android:ems="10"
         android:hint="유저 정보"
         android:inputType="textEmailAddress"
+        android:onClick="onClickUserInfo"
         android:paddingLeft="15dp"
         android:textColorLink="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor" />

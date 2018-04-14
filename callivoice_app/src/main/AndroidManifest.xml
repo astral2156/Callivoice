@@ -32,9 +32,11 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ResetPasswordActivity"/>
+        <activity android:name=".SettinginfoActivity"/>
         <activity android:name=".PopActivitySetting"
             android:theme="@style/AppTheme.CustomTheme"
             />
+
         <activity android:name=".SettingActivity"></activity>
     </application>
 
