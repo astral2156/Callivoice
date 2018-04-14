@@ -34,6 +34,17 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="로그아웃" />
+
+        <Button
+            android:id="@+id/settingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="68dp"
+            android:layout_marginEnd="67dp"
+            android:onClick="onsettingBtnClicked"
+            android:text="환경설정" />
     </RelativeLayout>
     
 
