@@ -29,18 +29,33 @@ public class SettingActivity extends AppCompatActivity {
     private Button endSetting;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
         appRead = (Button) findViewById(R.id.appRead); // 세팅화면에서 앱 사용 방법 눌렀을 때 팝업화면
         LogoutBtn = (Button) findViewById(R.id.logoutBtn);
+        UserInfo = (Button) findViewById(R.id.UserInfo);
 
         appRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this,PopActivitySetting.class));
+                startActivity(new Intent(SettingActivity.this, PopActivitySetting.class));
 
+            }
+        });
+
+        appRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, PopActivitySetting.class));
+            }
+        });
+
+        UserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, SettinginfoActivity.class));
             }
         });
 
@@ -52,22 +67,11 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+
+
             }
         });
+
     }
-
-
-    public void endSettingBtnClicked(View v){//뒤로가기 버튼
-        Toast.makeText(getApplicationContext(),"뒤로가기", Toast.LENGTH_LONG).show();
-        finish();
-    }
-
-
-    public void onClickUserInfo(View v){ //user 정보 열기 창
-        Intent intent = new Intent(getApplicationContext(),SettinginfoActivity.class);
-        startActivity(intent);
-    }
-
-
 
 }
