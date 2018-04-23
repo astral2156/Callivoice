@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -25,6 +30,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button mRegisterBtn;
     private FirebaseAuth firebaseAuth;
     private EditText mUserPasswordRepeat;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,8 @@ public class RegistrationActivity extends AppCompatActivity {
         mUserPasswordRepeat = (EditText) findViewById(R.id.userPasswordRepeat);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference();
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +73,21 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             Toast.makeText(RegistrationActivity.this, "회원가입이 완료되었습니다", Toast.LENGTH_LONG).show();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
+                            String userID = firebaseAuth.getCurrentUser().getUid();
+                            DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+
+                            String email = mUserEmail.getText().toString();
+                            String name = mUserName.getText().toString();
+
+
+                            Map newPost = new HashMap();
+                            newPost.put("name", name);
+                            newPost.put("email", email);
+                            currentUserDB.setValue(newPost);
+
+
                             Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         } else {
                             Log.e("Error", task.getException().toString());

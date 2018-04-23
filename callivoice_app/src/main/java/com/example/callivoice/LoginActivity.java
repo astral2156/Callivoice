@@ -1,8 +1,9 @@
 package com.example.callivoice;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -45,7 +46,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser()!= null){
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
             }
         };
@@ -79,6 +82,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth.addAuthStateListener(mAuthListener);
     }
+
+
 
     private void startSignIn() {
         String email = mUserEmail.getText().toString();
