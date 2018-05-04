@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +43,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotion_recognition);
+
 
 
         //identifying Text and Image Views
@@ -171,16 +171,6 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
                 }
 
-
-
-                System.out.println("Angry words count: "+angryList.size());
-                System.out.println("Sad words count: "+sadnessList.size());
-                System.out.println("Happy words count: "+joyList.size());
-                System.out.println("Fear words count: "+fearList.size());
-                System.out.println("Surprise words count: "+surpriseList.size());
-                System.out.println("Love words count: "+loveList.size());
-
-
                 //저장된 리스트의 사이즈를 비교해서 제일 큰 값을 찾으면 cnt에 아이디를 저장한다 (0-anger, 1-sadness, 2-joy, 3-fear, 4-surprise, 5-love):
                 int [] arr = {angryList.size(), sadnessList.size(), joyList.size(), fearList.size(), surpriseList.size(), loveList.size()};
                 int cnt=0;
@@ -196,7 +186,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                 //카운트가 '0'이면 anger, '1'이면 sadness 등등..
                 if(cnt==0) {
                     emotion="anger";
-                    mEmotionImgView.setImageResource(R.drawable.image_recordshowemotion_big_anger);
+                   mEmotionImgView.setImageResource(R.drawable.image_recordshowemotion_big_anger);
                 }
                 else if(cnt==1) {
                     emotion="sadness";
@@ -216,6 +206,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                 }
                 else if(cnt==5) {
                     emotion="love";
+
                     mEmotionImgView.setImageResource(R.drawable.image_recordshowemotion_big_love);
                 }
                 
@@ -227,7 +218,11 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
+
+
 
 
 }
