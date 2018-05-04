@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settinginfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login">
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="332dp"
-        android:layout_marginEnd="144dp"
-        android:text="사용자 정보"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    android:background="@drawable/bg_main">
 
     <TextView
         android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/userEmail"
+        android:layout_width="205dp"
+        android:layout_height="33dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
-        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="248dp"
         android:ems="10"
-        android:hint="이름"
         android:inputType="textPersonName"
-        android:paddingLeft="25dp"
+        android:text="UserName"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textColorLink="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:theme="@style/EditTextStyle"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="18sp"
+        android:theme="@style/EditTextStyle" />
 
     <TextView
         android:id="@+id/userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/userName"
+        android:layout_width="202dp"
+        android:layout_height="29dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="198dp"
         android:ems="10"
-        android:hint="이메일"
         android:inputType="textEmailAddress"
-        android:paddingLeft="25dp"
+        android:text="Email"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textColorLink="@android:color/black"
         android:textCursorDrawable="@drawable/color_cursor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/profileImageBtn"
+        android:layout_width="157dp"
+        android:layout_height="151dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="121dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="profileImage"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_account_circle_white_24dp"
+        app:srcCompat="@mipmap/ic_account_circle_white_24dp" />
+
+</RelativeLayout>

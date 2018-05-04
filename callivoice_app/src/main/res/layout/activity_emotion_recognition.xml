@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_record_showemotion"
     tools:context=".EmotionRecognitionActivity">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_height="107dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="126dp" />
+        android:layout_marginTop="27dp" />
 
     <TextView
         android:id="@+id/wordList"
@@ -20,6 +21,13 @@
         android:layout_height="57dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="157dp" />
+        android:layout_marginBottom="85dp" />
+
+    <ImageView
+        android:id="@+id/emotionImgView"
+        android:layout_width="89dp"
+        android:layout_height="90dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/image_recordshowemotion_big_love" />
 
 </RelativeLayout>

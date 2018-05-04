@@ -15,9 +15,7 @@
         android:layout_above="@+id/bgmOnOff"
         android:layout_centerHorizontal="true"
         android:text="환경 설정"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="30sp"/>
 
     <Button
         android:id="@+id/bgmOnOff"
@@ -28,10 +26,7 @@
         android:layout_marginBottom="300dp"
         android:ems="10"
         android:hint="배경음 ON / OFF"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        android:textColorLink="@android:color/black"
-        android:textCursorDrawable="@drawable/color_cursor" />
+        android:paddingLeft="15dp" />
     <Button
         android:id="@+id/appRead"
         android:layout_width="wrap_content"
@@ -41,10 +36,7 @@
         android:layout_marginBottom="250dp"
         android:ems="10"
         android:hint="앱 사용 방법"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        android:textColorLink="@android:color/black"
-        android:textCursorDrawable="@drawable/color_cursor" />
+        android:paddingLeft="15dp" />
 
     <Button
         android:id="@+id/UserInfo"
@@ -54,12 +46,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="200dp"
         android:ems="10"
-        android:hint="유저 정보"
-        android:inputType="textEmailAddress"
-        android:onClick="onClickUserInfo"
-        android:paddingLeft="15dp"
-        android:textColorLink="@android:color/black"
-        android:textCursorDrawable="@drawable/color_cursor" />
+        android:hint="내 정보"
+        android:paddingLeft="15dp" />
 
     <Button
         android:id="@+id/logoutBtn"
@@ -70,10 +58,7 @@
         android:layout_marginBottom="150dp"
         android:ems="10"
         android:hint="로그아웃"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        android:textColorLink="@android:color/black"
-        android:textCursorDrawable="@drawable/color_cursor" />
+        android:paddingLeft="15dp" />
 
     <Button
         android:id="@+id/endSetting"
@@ -84,10 +69,6 @@
         android:layout_marginBottom="50dp"
         android:ems="10"
         android:hint="뒤로가기"
-        android:inputType="textEmailAddress"
-        android:onClick="endSettingBtnClicked"
-        android:paddingLeft="15dp"
-        android:textColorLink="@android:color/black"
-        android:textCursorDrawable="@drawable/color_cursor" />
+        android:paddingLeft="15dp"/>
 
 </RelativeLayout>

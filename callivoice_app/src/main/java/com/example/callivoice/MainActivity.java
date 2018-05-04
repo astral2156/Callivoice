@@ -39,6 +39,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.Authenticator;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
@@ -221,12 +222,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP:
                         mSpeechRecognizer.stopListening();
-                        mUserText.setHint("You will see input here..");
+                        mUserText.setHint("오늘은 어떤 글을 쓰고 싶으신가요?");
 
                     break;
                     case MotionEvent.ACTION_DOWN:
                         mUserText.setText("");
-                        mUserText.setHint("Listening..");
+                        mUserText.setHint("녹음 중..");
                         mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
                         break;
@@ -246,16 +247,14 @@ public class MainActivity extends AppCompatActivity {
 */
 
     public void onsettingBtnClicked(View v) {
-        Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
         startActivity(intent);
     }
 
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
-                Intent intent = new Intent (Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
-                startActivity(intent);
-                finish();
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
             }
         }
 

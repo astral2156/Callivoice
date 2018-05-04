@@ -31,7 +31,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private EditText mUserPasswordRepeat;
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +59,12 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!mUserPassword.getText().toString().equals(mUserPasswordRepeat.getText().toString())) {
                 Toast.makeText(RegistrationActivity.this, "비밀번호를 다시 입력해 주세요", Toast.LENGTH_LONG).show();
                 return;
-            } else {
+            }
+            else if(mUserPassword.getText().toString().isEmpty() || mUserPasswordRepeat.getText().toString().isEmpty()|| mUserName.getText().toString().isEmpty() || mUserEmail.getText().toString().isEmpty()) {
+                Toast.makeText(RegistrationActivity.this, "회원 정보를 입력해 주세요", Toast.LENGTH_LONG).show();
+                return;
+            }
+            else {
                 final ProgressDialog progressDialog = ProgressDialog.show(RegistrationActivity.this, "잠시만 기다려 주세요...", "실행합니다...", true);
                 firebaseAuth.createUserWithEmailAndPassword(mUserEmail.getText().toString(), mUserPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -78,11 +81,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             String email = mUserEmail.getText().toString();
                             String name = mUserName.getText().toString();
-
+                            String image = "default";
 
                             Map newPost = new HashMap();
                             newPost.put("name", name);
                             newPost.put("email", email);
+                            newPost.put("image", image);
+                            newPost.put("thumb_image", "default");
                             currentUserDB.setValue(newPost);
 
 

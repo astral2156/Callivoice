@@ -28,25 +28,35 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_record_recordvoice" />
 
-        <EditText
-            android:id="@+id/userSpeechText"
-            android:layout_width="258dp"
-            android:layout_height="112dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="171dp"
-            android:backgroundTint="@android:color/transparent"
-            android:ems="10"
-            android:inputType="text" />
+    <EditText
+        android:id="@+id/userSpeechText"
+        android:layout_width="251dp"
+        android:layout_height="128dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:backgroundTint="@android:color/transparent"
+        android:inputType="text"
+        android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/sendToDB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="198dp"
-            android:text="Send" />
+    <Button
+        android:id="@+id/sendToDB"
+        android:layout_width="116dp"
+        android:layout_height="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="198dp"
+        android:background="@drawable/button1"
+        android:text="시작" />
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="54dp"
+        android:layout_height="43dp"
+        android:layout_alignBottom="@+id/settingBtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/button_main_gallery" />
+
+</RelativeLayout>
 

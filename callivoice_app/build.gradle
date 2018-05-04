@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation group: 'com.kakao.sdk', name: 'newtone', version: project.KAKAO_SPEECH_VERSION
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 }
 
 apply plugin: 'com.google.gms.google-services'
