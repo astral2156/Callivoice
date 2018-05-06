@@ -40,6 +40,10 @@
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".EmotionRecognitionActivity" />
+        <activity android:name=".EditResultActivity" />
+        <activity
+            android:name=".PopupFontActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>
