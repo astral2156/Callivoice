@@ -241,8 +241,10 @@ public class MainActivity extends AppCompatActivity {
         mGoToResultBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String mText = "안녕하세요";
 
                 Intent i = new Intent(MainActivity.this, EditResultActivity.class);
+                i.putExtra("CALLITEXT_KEY", "안녕하세요");
                 startActivity(i);
             }
         });

@@ -37,7 +37,7 @@ public class PopupFontActivity extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.6));
+        getWindow().setLayout((int)(width*.6),(int)(height*.8));
 
         Intent intent = getIntent();
         mChooseFontBtn1 = (Button) findViewById(R.id.fontBtn1);
