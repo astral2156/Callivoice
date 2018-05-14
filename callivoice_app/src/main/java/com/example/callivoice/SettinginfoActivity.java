@@ -62,7 +62,7 @@ public class SettinginfoActivity extends Activity{//회원 정보 받아오기 (
                 String name = dataSnapshot.child("name").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
-                String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
+                //String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
                 mUserName.setText(name);
                 mUserEmail.setText(email);
@@ -83,7 +83,7 @@ public class SettinginfoActivity extends Activity{//회원 정보 받아오기 (
 
         if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
-            CropImage.activity(imageUri).setGuidelines(CropImageView.Guidelines.ON).setCropShape(CropImageView.CropShape.OVAL).start(this);
+            CropImage.activity(imageUri).setGuidelines(CropImageView.Guidelines.ON).setCropShape(CropImageView.CropShape.OVAL).setAspectRatio(1,1).start(this);
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {

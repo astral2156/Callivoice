@@ -46,11 +46,13 @@
         android:layout_height="151dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
+        android:layout_marginTop="124dp"
         android:background="@android:color/transparent"
         android:contentDescription="profileImage"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_account_circle_white_24dp"
-        app:srcCompat="@mipmap/ic_account_circle_white_24dp" />
+        android:scaleType="fitXY"
+        android:src="@drawable/baseline_account_box_white_48dp" />
+
+
+
 
 </RelativeLayout>
