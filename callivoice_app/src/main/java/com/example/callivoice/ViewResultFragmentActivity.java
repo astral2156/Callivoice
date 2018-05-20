@@ -3,6 +3,7 @@ package com.example.callivoice;
 /**
  * Created by Lss on 2018-05-06.
  */
+import android.content.Context;
 import android.support.v4.app.Fragment;
 //import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -17,9 +18,7 @@ public class ViewResultFragmentActivity extends Fragment {
     TextView textView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {  super.onCreate(savedInstanceState);  }
 
     @Nullable
     @Override

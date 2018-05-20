@@ -3,47 +3,87 @@
         android:id="@+id/popup_element"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@drawable/popupwindow_editresult_font"
         android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:padding="10sp" >
+        android:padding="10sp"  >
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="#3F0099"
-            android:text="레이아웃이 적용된 팝업창"
-            android:textColor="#FFFFFF"
-            android:id="@+id/textView4" />
-
-    <Button
+        <Button
         android:id="@+id/closePopupBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Close" />
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="닫기"/>
 
 
     <Button
         android:id="@+id/fontBtn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/fontBtn2"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="24dp"
-        android:text="폰트1" />
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:fontFamily="@font/thefaceshop"
+        android:text="더페이스샵 잉크립퀴드체" />
 
     <Button
         android:id="@+id/fontBtn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/fontBtn1"
         android:layout_below="@+id/fontBtn1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="86dp"
-        android:text="폰트2" />
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nanumbrush"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="나눔손글씨 붓" />
+
+    <Button
+        android:id="@+id/fontBtn3"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/fontBtn2"
+        android:layout_below="@+id/fontBtn2"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/seoulhangang"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="서울한강체" />
+
+    <Button
+        android:id="@+id/fontBtn4"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/fontBtn3"
+        android:layout_below="@+id/fontBtn3"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/menbal"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="맨발의청춘" />
+
+    <Button
+        android:id="@+id/fontBtn5"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/fontBtn4"
+        android:layout_below="@+id/fontBtn4"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/leesunsin"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="이순신체" />
+
+    <Button
+        android:id="@+id/fontBtn6"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/fontBtn5"
+        android:layout_below="@+id/fontBtn5"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bingrae"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="빙그레체" />
 
     </RelativeLayout>

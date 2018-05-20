@@ -24,6 +24,11 @@ public class PopupFontActivity extends Activity {
 
     private Button mChooseFontBtn1;
     private Button mChooseFontBtn2;
+    private Button mChooseFontBtn3;
+    private Button mChooseFontBtn4;
+    private Button mChooseFontBtn5;
+    private Button mChooseFontBtn6;
+
     private Button mCloseBtn;
 
     @Override
@@ -42,6 +47,11 @@ public class PopupFontActivity extends Activity {
         Intent intent = getIntent();
         mChooseFontBtn1 = (Button) findViewById(R.id.fontBtn1);
         mChooseFontBtn2 = (Button) findViewById(R.id.fontBtn2);
+        mChooseFontBtn3 = (Button) findViewById(R.id.fontBtn3);
+        mChooseFontBtn4 = (Button) findViewById(R.id.fontBtn4);
+        mChooseFontBtn5 = (Button) findViewById(R.id.fontBtn5);
+        mChooseFontBtn6 = (Button) findViewById(R.id.fontBtn6);
+
         mCloseBtn = (Button) findViewById(R.id.closePopupBtn);
 
         mCloseBtn.setOnClickListener(new View.OnClickListener(){
