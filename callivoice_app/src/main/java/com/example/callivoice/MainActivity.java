@@ -4,6 +4,7 @@ package com.example.callivoice;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -64,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         checkPermission();
+
+
+        //Check if application running first time or not. If its running first time welcome screen will be executed
+        SharedPreferences settings = this.getSharedPreferences("appInfo", 0);
+        boolean firstTime = settings.getBoolean("first_time", true);
+        if(firstTime) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("first_time", false);
+            editor.commit();
+        }
 
         mRecordButton = (Button) findViewById(R.id.voiceRecordBtn);
         mUserText = (EditText) findViewById(R.id.userSpeechText);
@@ -197,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String mText = mUserText.getText().toString();
 
                 if(TextUtils.isEmpty(mText)) {
@@ -212,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     currentUserDB.child("userText").push().setValue(userTextString);
                     Intent i = new Intent(MainActivity.this, EmotionRecognitionActivity.class);
                     startActivity(i);
+
                 }
             }
         });

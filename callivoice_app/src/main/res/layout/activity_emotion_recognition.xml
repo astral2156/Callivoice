@@ -22,15 +22,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:id="@+id/emotionImgView"
-        android:layout_width="109dp"
+    <in.goodiebag.carouselpicker.CarouselPicker
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="125dp"
-        android:layout_marginTop="252dp"
-        app:srcCompat="@drawable/image_recordshowemotion_big_love" />
-
+        android:layout_centerVertical="true"
+        app:items_visible="three" />
 
 </RelativeLayout>

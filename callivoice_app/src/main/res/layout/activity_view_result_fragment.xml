@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+<<<<<<< HEAD
         android:id="@+id/fragment_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,10 +17,22 @@
 
     <TextView
         android:id="@+id/fragment_text_thefaceshop"
+=======
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
+        <!--app:srcCompat="@drawable/z_bgr_joy1" -->
+
+    <TextView
+        android:id="@+id/fragment_text"
+>>>>>>> origin/master
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+<<<<<<< HEAD
         android:fontFamily="@font/thefaceshop"
         android:text="결과창"
         android:textSize="50sp" />
@@ -73,5 +86,13 @@
         android:fontFamily="@font/bingrae"
         android:text=""
         android:textSize="50sp" />
+=======
+        android:text="결과창"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="50sp" />
+
+
+
+>>>>>>> origin/master
 
 </RelativeLayout>

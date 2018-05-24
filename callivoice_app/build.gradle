@@ -44,6 +44,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation group: 'com.kakao.sdk', name: 'newtone', version: project.KAKAO_SPEECH_VERSION
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+    implementation 'com.github.Vatican-Cameos:CarouselPicker:v1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
