@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/popup_element"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/popupwindow_editresult_font"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="10sp"  >
+
+        <Button
+        android:id="@+id/closePopupBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:text="닫기"/>
+
+
+    <ImageButton
+        android:id="@+id/bgBtn1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/z_bgr_anger1" />
+
+
+    <ImageButton
+        android:id="@+id/bgBtn2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn1"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn1"
+        app:srcCompat="@drawable/z_bgr_anger2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn1"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn2"
+        app:srcCompat="@drawable/z_bgr_anger3" />
+
+    <ImageButton
+        android:id="@+id/bgBtn4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn1"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn3"
+        app:srcCompat="@drawable/z_bgr_anger4" />
+
+
+    <ImageButton
+        android:id="@+id/bgBtn5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/bgBtn1"
+        android:layout_below="@+id/bgBtn1"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/z_bgr_fear1" />
+
+    <ImageButton
+        android:id="@+id/bgBtn6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn5"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn5"
+        app:srcCompat="@drawable/z_bgr_fear2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn5"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn6"
+        app:srcCompat="@drawable/z_bgr_fear3" />
+
+    <ImageButton
+        android:id="@+id/bgBtn8"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn5"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn7"
+        app:srcCompat="@drawable/z_bgr_fear4" />
+
+    <ImageButton
+        android:id="@+id/bgBtn9"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/bgBtn5"
+        android:layout_below="@+id/bgBtn5"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/z_bgr_joy1" />
+
+    <ImageButton
+        android:id="@+id/bgBtn10"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn9"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn9"
+        app:srcCompat="@drawable/z_bgr_joy2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn11"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn9"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn10"
+        app:srcCompat="@drawable/z_bgr_joy3" />
+
+    <ImageButton
+        android:id="@+id/bgBtn12"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn9"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn11"
+        app:srcCompat="@drawable/z_bgr_joy4" />
+
+    <ImageButton
+        android:id="@+id/bgBtn13"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/bgBtn9"
+        android:layout_below="@+id/bgBtn9"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/z_bgr_love1" />
+
+    <ImageButton
+        android:id="@+id/bgBtn14"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn13"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn13"
+        app:srcCompat="@drawable/z_bgr_love2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn15"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn13"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn14"
+        app:srcCompat="@drawable/z_bgr_love3" />
+
+    <ImageButton
+        android:id="@+id/bgBtn16"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn13"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn15"
+        app:srcCompat="@drawable/z_bgr_love4" />
+
+    <ImageButton
+        android:id="@+id/bgBtn17"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/bgBtn13"
+        android:layout_below="@+id/bgBtn13"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/z_bgr_sadness1" />
+
+    <ImageButton
+        android:id="@+id/bgBtn18"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn17"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn17"
+        app:srcCompat="@drawable/z_bgr_sadness2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn19"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn17"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn18"
+        app:srcCompat="@drawable/z_bgr_sadness3" />
+
+    <ImageButton
+        android:id="@+id/bgBtn20"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn17"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn19"
+        app:srcCompat="@drawable/z_bgr_sadness4" />
+
+    <ImageButton
+        android:id="@+id/bgBtn21"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/bgBtn17"
+        android:layout_below="@+id/bgBtn17"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/z_bgr_surprise1" />
+
+    <ImageButton
+        android:id="@+id/bgBtn22"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn21"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn21"
+        app:srcCompat="@drawable/z_bgr_surprise2" />
+
+    <ImageButton
+        android:id="@+id/bgBtn23"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/bgBtn21"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/bgBtn22"
+        app:srcCompat="@drawable/z_bgr_surprise3" />
+
+</RelativeLayout>

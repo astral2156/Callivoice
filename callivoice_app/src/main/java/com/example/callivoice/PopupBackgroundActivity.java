@@ -6,45 +6,26 @@ package com.example.callivoice;
 
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.EditText;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
-public class PopupFontActivity extends Activity {
+public class PopupBackgroundActivity extends Activity {
 
-    private Button mChooseFontBtn1;
-    private Button mChooseFontBtn2;
-    private Button mChooseFontBtn3;
-    private Button mChooseFontBtn4;
-    private Button mChooseFontBtn5;
-    private Button mChooseFontBtn6;
+    ImageButton[] mChooseBgBtn = new ImageButton[23];
 
-    private int FONT_THEFACESHOP = 1;
-    private int FONT_NANUM = 2;
-    private int FONT_SEOUL = 3;
-    private int FONT_MENBAL = 4;
-    private int FONT_LEESUNSIN = 5;
-    private int FONT_BINGRAE = 6;
-    private int CLOSE = 0;
-
-    private int mfont = FONT_THEFACESHOP;
+    int bg = 1;
+    int CLOSE = 0;
 
     private Button mCloseBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popup_font);
+        setContentView(R.layout.activity_popup_background);
 
 
         //font window size
@@ -55,7 +36,7 @@ public class PopupFontActivity extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.6),(int)(height*.8));
+        getWindow().setLayout((int)(width*.8),(int)(height*.9));
 
 
 
@@ -63,15 +44,42 @@ public class PopupFontActivity extends Activity {
         final Intent intent = getIntent();
 
 
-        mChooseFontBtn1 = (Button) findViewById(R.id.fontBtn1);
-        mChooseFontBtn2 = (Button) findViewById(R.id.fontBtn2);
-        mChooseFontBtn3 = (Button) findViewById(R.id.fontBtn3);
-        mChooseFontBtn4 = (Button) findViewById(R.id.fontBtn4);
-        mChooseFontBtn5 = (Button) findViewById(R.id.fontBtn5);
-        mChooseFontBtn6 = (Button) findViewById(R.id.fontBtn6);
+        mChooseBgBtn[0] = (ImageButton) findViewById(R.id.bgBtn1);
+        mChooseBgBtn[1] = (ImageButton) findViewById(R.id.bgBtn2);
+        mChooseBgBtn[2] = (ImageButton) findViewById(R.id.bgBtn3);
+        mChooseBgBtn[3] = (ImageButton) findViewById(R.id.bgBtn4);
+        mChooseBgBtn[4] = (ImageButton) findViewById(R.id.bgBtn5);
+        mChooseBgBtn[5] = (ImageButton) findViewById(R.id.bgBtn6);
+        mChooseBgBtn[6] = (ImageButton) findViewById(R.id.bgBtn7);
+        mChooseBgBtn[7] = (ImageButton) findViewById(R.id.bgBtn8);
+        mChooseBgBtn[8] = (ImageButton) findViewById(R.id.bgBtn9);
+        mChooseBgBtn[9] = (ImageButton) findViewById(R.id.bgBtn10);
+        mChooseBgBtn[10] = (ImageButton) findViewById(R.id.bgBtn11);
+        mChooseBgBtn[11] = (ImageButton) findViewById(R.id.bgBtn12);
+        mChooseBgBtn[12] = (ImageButton) findViewById(R.id.bgBtn13);
+        mChooseBgBtn[13] = (ImageButton) findViewById(R.id.bgBtn14);
+        mChooseBgBtn[14] = (ImageButton) findViewById(R.id.bgBtn15);
+        mChooseBgBtn[15] = (ImageButton) findViewById(R.id.bgBtn16);
+        mChooseBgBtn[16] = (ImageButton) findViewById(R.id.bgBtn17);
+        mChooseBgBtn[17] = (ImageButton) findViewById(R.id.bgBtn18);
+        mChooseBgBtn[18] = (ImageButton) findViewById(R.id.bgBtn19);
+        mChooseBgBtn[19] = (ImageButton) findViewById(R.id.bgBtn20);
+        mChooseBgBtn[20] = (ImageButton) findViewById(R.id.bgBtn21);
+        mChooseBgBtn[21] = (ImageButton) findViewById(R.id.bgBtn22);
+        mChooseBgBtn[22] = (ImageButton) findViewById(R.id.bgBtn23);
+
 
         mCloseBtn = (Button) findViewById(R.id.closePopupBtn);
+/*
+        for(int i=0; i<23; i++)
+        {
+            int now = i;
+            mChooseBgBtn[i].setOnClickListener(new View.OnClickListener(){
+                @Override
 
+                public void onClick(View v) {                bg  = now; selectFont();          }
+            });
+        }
         mChooseFontBtn1.setOnClickListener(new View.OnClickListener(){
             @Override
 
@@ -109,11 +117,11 @@ public class PopupFontActivity extends Activity {
 
             public void onClick(View v) {                mfont = CLOSE; selectFont();            }
         });
-
+*/
 
     }
 
-    private void selectFont() {
+  /*  private void selectFont() {
         if(mfont == CLOSE) finish();
         else
         {
@@ -122,5 +130,5 @@ public class PopupFontActivity extends Activity {
             setResult(RESULT_OK, intent);
             finish();
         }
-    }
+    }*/
 }

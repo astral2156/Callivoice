@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/fragment_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,16 +15,63 @@
         app:srcCompat="@drawable/z_bgr_joy1" />
 
     <TextView
-        android:id="@+id/fragment_text"
+        android:id="@+id/fragment_text_thefaceshop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:fontFamily="@font/thefaceshop"
         android:text="결과창"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="50sp" />
 
+    <TextView
+        android:id="@+id/fragment_text_nanum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/nanumbrush"
+        android:text=""
+        android:textSize="50sp" />
 
+    <TextView
+        android:id="@+id/fragment_text_seoul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/seoulhangang"
+        android:text=""
+        android:textSize="50sp" />
 
+    <TextView
+        android:id="@+id/fragment_text_menbal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/menbal"
+        android:text=""
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/fragment_text_leesunsin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/leesunsin"
+        android:text=""
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/fragment_text_bingrae"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/bingrae"
+        android:text=""
+        android:textSize="50sp" />
 
 </RelativeLayout>

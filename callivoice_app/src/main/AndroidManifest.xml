@@ -45,6 +45,9 @@
         <activity
             android:name=".PopupFontActivity"
             android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".PopupBackgroundActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".ViewResultFragmentActivity" />
     </application>
 

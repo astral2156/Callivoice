@@ -14,7 +14,7 @@
         android:layout_marginTop="35dp"
         android:background="@drawable/button_editresult_emoticon" />
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/resultImage"
         android:layout_width="360dp"
         android:layout_height="360dp"
