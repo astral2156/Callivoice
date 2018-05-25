@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_record_showemotion"
+    tools:context=".EmotionRecognitionActivity">
+
+    <TextView
+        android:id="@+id/userTextView"
+        android:layout_width="221dp"
+        android:layout_height="107dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:id="@+id/wordList"
+        android:layout_width="219dp"
+        android:layout_height="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <in.goodiebag.carouselpicker.CarouselPicker
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        app:items_visible="three" />
+
+    <Button
+        android:id="@+id/goToImageEditBtn"
+        android:layout_width="145dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/button1"
+        android:text="다음" />
+
+</RelativeLayout>

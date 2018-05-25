@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "662567898174",
+    "firebase_url": "https://calli-voice.firebaseio.com",
+    "project_id": "calli-voice",
+    "storage_bucket": "calli-voice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662567898174:android:6f5fa9e9d9c7eb61",
+        "android_client_info": {
+          "package_name": "com.example.a13.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662567898174-6gl9rq03fme2c1k12bvabh35rk76r7ih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.a13.myapplication",
+            "certificate_hash": "0fbfc754d268bf5c9d5dc6ad24f934cdcfff9edd"
+          }
+        },
+        {
+          "client_id": "662567898174-voqok933aj2rihom68c5e12tv8so0psa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1C7_pZug3UBczs0Ag3TY8DhpSWmnDbwU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662567898174-voqok933aj2rihom68c5e12tv8so0psa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662567898174:android:e411f5e4bf8ca0c1",
+        "android_client_info": {
+          "package_name": "com.example.callivoice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662567898174-gvl6irctclr0c9arqrr66u4b7kur1vji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.callivoice",
+            "certificate_hash": "51a808041d93eb38e59f0995d9042af593994351"
+          }
+        },
+        {
+          "client_id": "662567898174-voqok933aj2rihom68c5e12tv8so0psa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1C7_pZug3UBczs0Ag3TY8DhpSWmnDbwU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662567898174-voqok933aj2rihom68c5e12tv8so0psa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

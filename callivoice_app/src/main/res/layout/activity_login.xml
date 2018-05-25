@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    android:padding="20dp"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/textfield_email_password"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColorLink="@android:color/black"
+        android:textCursorDrawable="@drawable/color_cursor" />
+
+    <EditText
+        android:id="@+id/userPasswordRepeat"
+        android:layout_width="290dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/userEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textfield_email_password"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textCursorDrawable="@drawable/color_cursor" />
+
+    <Button
+        android:id="@+id/signinBtn"
+        android:layout_width="189dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/userPasswordRepeat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/button_signin"
+        android:text="로그인" />
+
+
+    <Button
+        android:id="@+id/registrationBtn"
+        android:layout_width="161dp"
+        android:layout_height="31dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/signinBtn"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_bg_stroke"
+        android:text="회원가입"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/resetPasswordBtn"
+        android:layout_width="152dp"
+        android:layout_height="31dp"
+        android:layout_below="@+id/signinBtn"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@+id/registrationBtn"
+        android:background="@drawable/button_bg_stroke"
+        android:text="비밀번호 재설정"
+        android:textSize="14sp" />
+</RelativeLayout>
