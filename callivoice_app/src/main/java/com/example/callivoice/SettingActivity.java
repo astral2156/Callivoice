@@ -1,6 +1,9 @@
 package com.example.callivoice;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -27,6 +30,7 @@ public class SettingActivity extends AppCompatActivity {
     private Button UserInfo;
     private Button LogoutBtn;
     private Button endSetting;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class SettingActivity extends AppCompatActivity {
         appRead = (Button) findViewById(R.id.appRead); // 세팅화면에서 앱 사용 방법 눌렀을 때 팝업화면
         LogoutBtn = (Button) findViewById(R.id.logoutBtn);
         UserInfo = (Button) findViewById(R.id.UserInfo);
+        endSetting = (Button) findViewById(R.id.endSetting);
+
 
         appRead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +73,36 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-
-
             }
         });
 
+        endSetting.setOnClickListener(new View.OnClickListener(){
+            @Override
+
+            public void onClick(View v) {
+                AlertDialog.Builder exitDialogBuilder = new AlertDialog.Builder(context);
+                exitDialogBuilder.setTitle("종료하기");
+                exitDialogBuilder.setMessage("뒤로 가시겠습니까?").setCancelable(false)
+                        .setPositiveButton("뒤로가기",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        finish();
+                                    }
+                                })
+                        .setNegativeButton("취소",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                });
+
+                AlertDialog exitDialog = exitDialogBuilder.create();
+
+                exitDialog.show();
+            }
+        });
     }
 
 }
