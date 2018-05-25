@@ -76,45 +76,35 @@ public class PopupBackgroundActivity extends Activity {
             int now = i;
             mChooseBgBtn[i].setOnClickListener(new View.OnClickListener(){
                 @Override
-
                 public void onClick(View v) {                bg  = now; selectFont();          }
             });
         }
         mChooseFontBtn1.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_THEFACESHOP; selectFont();          }
         });
         mChooseFontBtn2.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_NANUM; selectFont();          }
         });
         mChooseFontBtn3.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_SEOUL; selectFont();          }
         });
         mChooseFontBtn4.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_MENBAL; selectFont();          }
         });
         mChooseFontBtn5.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_LEESUNSIN; selectFont();          }
         });
         mChooseFontBtn6.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont  = FONT_BINGRAE; selectFont();          }
         });
-
-
         mCloseBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View v) {                mfont = CLOSE; selectFont();            }
         });
 */

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/popup_element"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/popupwindow_editresult_font"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:padding="10sp"  >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_element"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popupwindow_editresult_font"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:padding="10sp"  >
 
-        <Button
+    <Button
         android:id="@+id/closePopupBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
