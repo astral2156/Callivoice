@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:background="@drawable/button_editresult_emoticon" />
+        android:background="@drawable/button_editresult_emoticon"
+        android:onClick="onimoticonClicked" />
 
     <ImageView
         android:id="@+id/imageView2"

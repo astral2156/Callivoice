@@ -6,25 +6,20 @@ package com.example.callivoice;
 
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EditResultActivity extends AppCompatActivity{
 
     private Button mBackBtn;
     private Button mFontBtn;
+    private Button mimoticonBtn;
     final Context context = this;
 
     @Override
@@ -38,6 +33,7 @@ public class EditResultActivity extends AppCompatActivity{
         Intent intent = getIntent();
         mBackBtn = (Button) findViewById(R.id.back);
         mFontBtn = (Button) findViewById(R.id.font);
+        mimoticonBtn = (Button) findViewById(R.id.imoticon) ;
 
         String callitext = intent.getStringExtra("CALLITEXT_KEY");
         mCalliText.setText(callitext);
@@ -77,7 +73,22 @@ public class EditResultActivity extends AppCompatActivity{
                 Intent popup_intent = new Intent(EditResultActivity.this, PopupFontActivity.class);
                 startActivity(popup_intent);
             }
+
+
         });
+
+
+
+        mimoticonBtn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(EditResultActivity.this, PopupEmoticonActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
 }

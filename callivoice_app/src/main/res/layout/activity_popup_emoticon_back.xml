@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_element"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/popupwindow_editresult_font"
+    android:orientation="vertical"
+    android:padding="10sp">
+
+    <Button
+        android:id="@+id/closePopupBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_editresult_fontbutton2"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="닫기" />
+
+
+    <Button
+        android:id="@+id/emBtn1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/button_main_option" />
+
+
+    <Button
+        android:id="@+id/emBtn2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/emBtn1"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/emBtn1"
+        app:srcCompat="@drawable/button_main_option" />
+
+
+    <Button
+        android:id="@+id/emBtn5"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@+id/emBtn1"
+        android:layout_below="@+id/emBtn1"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/button_main_option" />
+
+    <Button
+        android:id="@+id/emBtn6"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/emBtn5"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/emBtn5"
+        app:srcCompat="@drawable/button_main_option" />
+
+
+    <Button
+        android:id="@+id/emBtn9"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@+id/emBtn5"
+        android:layout_below="@+id/emBtn5"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/button_main_option" />
+
+    <Button
+        android:id="@+id/emBtn10"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/emBtn9"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/emBtn9"
+        app:srcCompat="@drawable/button_main_option" />
+
+    <Button
+        android:id="@+id/emBtn13"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@+id/emBtn9"
+        android:layout_below="@+id/emBtn9"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/button_main_option" />
+
+    <Button
+        android:id="@+id/emBtn14"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/emBtn13"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/emBtn13"
+        app:srcCompat="@drawable/button_main_option" />
+
+
+</RelativeLayout>
