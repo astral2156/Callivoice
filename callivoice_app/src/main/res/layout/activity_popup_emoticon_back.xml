@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_element"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:background="@drawable/popupwindow_editresult_font"
     android:orientation="vertical"
@@ -29,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/button_main_option" />
+        android:background="@drawable/inlove" />
 
 
     <Button
@@ -39,7 +40,7 @@
         android:layout_alignTop="@+id/emBtn1"
         android:layout_marginStart="25dp"
         android:layout_toEndOf="@+id/emBtn1"
-        app:srcCompat="@drawable/button_main_option" />
+        android:background="@drawable/button_main_option" />
 
 
     <Button

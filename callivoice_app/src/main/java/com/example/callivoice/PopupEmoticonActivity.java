@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,12 +42,16 @@ public class PopupEmoticonActivity extends Activity {
         //mPhotoEditorView = findViewById(R.id.photoEditorView);
 
         DisplayMetrics dm = new DisplayMetrics();
+        Window window = getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-
-        getWindow().setLayout((int)(width*.6),(int)(height*.8));
+        wlp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+        wlp.y = 100;
+        window.setAttributes(wlp);
+        window.setLayout((int)(width*.8),(int)(height*.9));
 
         Intent intent = getIntent();
         mChooseEmoticonBtn1 = findViewById(R.id.emBtn1);
