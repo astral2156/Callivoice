@@ -8,6 +8,6 @@ public class EmotionGalleryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emotion_gallery);
+        setContentView(R.layout.activity_popup_emotiongallery);
     }
 }
