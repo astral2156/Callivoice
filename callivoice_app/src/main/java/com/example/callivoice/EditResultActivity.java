@@ -11,10 +11,13 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +44,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,12 +56,13 @@ import ja.burhanrashid52.photoeditor.PhotoEditor;
 import ja.burhanrashid52.photoeditor.PhotoEditorView;
 import ja.burhanrashid52.photoeditor.ViewType;
 
-public class EditResultActivity extends AppCompatActivity{
+public class EditResultActivity extends AppCompatActivity {
 
     private Button mBackBtn;
     private Button mFontBtn;
     private Button mEmotionGalleryBtn;
     private Button mSaveBtn;
+    private Button mShareBtn;
 
     final Context context = this;
     private PhotoEditorView mPhotoEditorView;
@@ -78,6 +84,9 @@ public class EditResultActivity extends AppCompatActivity{
     private final int surprise = 6;
     private int selectedFont = R.font.basefont;
     private String myText;
+    private String mFileName;
+    private String mFilePath;
+    private boolean saved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +101,22 @@ public class EditResultActivity extends AppCompatActivity{
 
         mPhotoEditorView = findViewById(R.id.photoEditorView);
 
-        mPhotoEditor = new PhotoEditor.Builder(this,mPhotoEditorView).setPinchTextScalable(true).build();
+        mPhotoEditor = new PhotoEditor.Builder(this, mPhotoEditorView).setPinchTextScalable(true).build();
         mStorage = FirebaseStorage.getInstance().getReference();
         mImageDB = FirebaseDatabase.getInstance().getReference().child("Images");
         TextView mCalliText = findViewById(R.id.calliTextView);
+
+        mFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "callivoice";
+        mFileName = mFilePath + "/image" + System.currentTimeMillis() + ".jpg";
+        saved = false;
+
 
 
         mBackBtn = (Button) findViewById(R.id.back);
         mFontBtn = (Button) findViewById(R.id.font);
         mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
         mSaveBtn = (Button) findViewById(R.id.save);
+        mShareBtn = (Button) findViewById(R.id.share);
 
 
         String callitext = intent.getStringExtra("CALLITEXT_KEY");
@@ -110,9 +125,9 @@ public class EditResultActivity extends AppCompatActivity{
         mImageDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int imgCount=0;
+                int imgCount = 0;
                 int randomImage = 0;
-                if(emotion.equals("anger")) {
+                if (emotion.equals("anger")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("anger").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -122,11 +137,11 @@ public class EditResultActivity extends AppCompatActivity{
                             mAngerImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mAngerImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mAngerImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
-                if(emotion.equals("fear")) {
+                if (emotion.equals("fear")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("fear").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -136,12 +151,12 @@ public class EditResultActivity extends AppCompatActivity{
                             mFearImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mFearImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mFearImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
-                if(emotion.equals("love")) {
+                if (emotion.equals("love")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("love").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -151,12 +166,12 @@ public class EditResultActivity extends AppCompatActivity{
                             mLoveImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mLoveImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mLoveImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
-                if(emotion.equals("sadness")) {
+                if (emotion.equals("sadness")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("sadness").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -166,12 +181,12 @@ public class EditResultActivity extends AppCompatActivity{
                             mSadnessImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mSadnessImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mSadnessImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
-                if(emotion.equals("surprise")) {
+                if (emotion.equals("surprise")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("surprise").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -182,12 +197,12 @@ public class EditResultActivity extends AppCompatActivity{
                             mSurpriseImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mSurpriseImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mSurpriseImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
-                if(emotion.equals("joy")) {
+                if (emotion.equals("joy")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("joy").getChildren()) {
                         String key = childSnapshot.getKey();
                         if (key.equals("Counter")) {
@@ -197,9 +212,9 @@ public class EditResultActivity extends AppCompatActivity{
                             mJoyImages.add(value);
                         }
                     }
-                    randomImage =(int)(Math.random()*imgCount+1);
-                    mPhotoEditor.addText(myText, Color.rgb(255,255,255));
-                    Picasso.get().load(mJoyImages.get(randomImage-1)).into(mPhotoEditorView.getSource());
+                    randomImage = (int) (Math.random() * imgCount + 1);
+                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    Picasso.get().load(mJoyImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
                 System.out.println(imgCount);
             }
@@ -211,7 +226,7 @@ public class EditResultActivity extends AppCompatActivity{
         });
 
 
-        mBackBtn.setOnClickListener(new View.OnClickListener(){
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
@@ -243,29 +258,45 @@ public class EditResultActivity extends AppCompatActivity{
             }
         });
 
-        mFontBtn.setOnClickListener(new View.OnClickListener(){
+        mFontBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
-               displayPopupFont();
-               /*Intent intent = new Intent(EditResultActivity.this, PopupFontActivity.class);
-               startActivity(intent);*/
+                displayPopupFont();
             }
         });
 
-        mEmotionGalleryBtn.setOnClickListener(new View.OnClickListener(){
+        mEmotionGalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
-            public void onClick(View v){
+            public void onClick(View v) {
                 displayPopupEG(emotion);
             }
         });
 
-        mSaveBtn.setOnClickListener(new View.OnClickListener(){
+        mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
-            public void onClick(View v){
+            public void onClick(View v) {
+                saveImage();
+            }
+        });
 
+        mShareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                if(!saved) saveImage();
+
+                Uri uri = Uri.fromFile(new File(mFileName));
+
+                Intent share_intent = new Intent();
+                share_intent.setAction(Intent.ACTION_SEND);
+                share_intent.setType("image/jpg");
+                share_intent.putExtra(Intent.EXTRA_STREAM, uri);
+
+                Intent chooser = Intent.createChooser(share_intent, "이미지 공유하기");
+                startActivity(chooser);
             }
         });
     }
@@ -426,7 +457,6 @@ public class EditResultActivity extends AppCompatActivity{
         mChooseEmotionBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // mPhotoEditor.clearAllViews();
                 if(e.equals("anger")) Picasso.get().load(mAngerImages.get(0)).into(mPhotoEditorView.getSource());
                 if(e.equals("fear")) Picasso.get().load(mFearImages.get(0)).into(mPhotoEditorView.getSource());
                 if(e.equals("love")) Picasso.get().load(mLoveImages.get(0)).into(mPhotoEditorView.getSource());
@@ -440,7 +470,6 @@ public class EditResultActivity extends AppCompatActivity{
         mChooseEmotionBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  mPhotoEditor.clearAllViews();
                 if(e.equals("anger")) Picasso.get().load(mAngerImages.get(1)).into(mPhotoEditorView.getSource());
                 if(e.equals("fear")) Picasso.get().load(mFearImages.get(1)).into(mPhotoEditorView.getSource());
                 if(e.equals("love")) Picasso.get().load(mLoveImages.get(1)).into(mPhotoEditorView.getSource());
@@ -454,7 +483,6 @@ public class EditResultActivity extends AppCompatActivity{
         mChooseEmotionBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    mPhotoEditor.clearAllViews();
                 if(e.equals("anger")) Picasso.get().load(mAngerImages.get(2)).into(mPhotoEditorView.getSource());
                 if(e.equals("fear")) Picasso.get().load(mFearImages.get(2)).into(mPhotoEditorView.getSource());
                 if(e.equals("love")) Picasso.get().load(mLoveImages.get(2)).into(mPhotoEditorView.getSource());
@@ -468,7 +496,6 @@ public class EditResultActivity extends AppCompatActivity{
         mChooseEmotionBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    mPhotoEditor.clearAllViews();
                 if(e.equals("anger")) Picasso.get().load(mAngerImages.get(3)).into(mPhotoEditorView.getSource());
                 if(e.equals("fear")) Picasso.get().load(mFearImages.get(3)).into(mPhotoEditorView.getSource());
                 if(e.equals("love")) Picasso.get().load(mLoveImages.get(3)).into(mPhotoEditorView.getSource());
@@ -481,6 +508,33 @@ public class EditResultActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 pw.dismiss();
+            }
+        });
+    }
+
+    public void saveImage()
+    {
+        if (ActivityCompat.checkSelfPermission(EditResultActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "저장 권한을 승인받아야 합니다", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        File file = new File(mFilePath);
+        if(!file.exists()) file.mkdir();
+
+        mPhotoEditor.saveImage(mFileName, new PhotoEditor.OnSaveListener() {
+            @Override
+            public void onSuccess(@NonNull String imagePath) {
+                saved = true;
+                Log.e("PhotoEditor", "Image Saved Successfully");
+                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.e("PhotoEditor", "Failed to save image");
+                Toast.makeText(getApplicationContext(), "저장에 실패했습니다", Toast.LENGTH_LONG).show();
             }
         });
     }
