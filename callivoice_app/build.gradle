@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.github.Vatican-Cameos:CarouselPicker:v1.0'
     implementation 'ja.burhanrashid52:photoeditor:0.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

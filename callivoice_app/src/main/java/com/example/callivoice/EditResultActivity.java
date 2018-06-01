@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -535,6 +537,19 @@ public class EditResultActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception exception) {
                 Log.e("PhotoEditor", "Failed to save image");
                 Toast.makeText(getApplicationContext(), "저장에 실패했습니다", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String userID = firebaseAuth.getCurrentUser().getUid();
+        Uri file_uri = Uri.fromFile(new File(mFileName));
+
+        StorageReference mUserImageRef = mStorage.child("user_images/"+ userID +"/" +file_uri.getLastPathSegment());
+        UploadTask uploadTask = mUserImageRef.putFile(file_uri);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                System.out.println("Image upload successfully");
             }
         });
     }
