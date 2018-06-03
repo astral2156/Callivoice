@@ -21,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -30,10 +31,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -89,6 +92,7 @@ public class EditResultActivity extends AppCompatActivity {
     private String mFileName;
     private String mFilePath;
     private boolean saved;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +123,9 @@ public class EditResultActivity extends AppCompatActivity {
         mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
         mSaveBtn = (Button) findViewById(R.id.save);
         mShareBtn = (Button) findViewById(R.id.share);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+
 
 
         String callitext = intent.getStringExtra("CALLITEXT_KEY");
@@ -272,6 +279,7 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
+
                 displayPopupEG(emotion);
             }
         });
@@ -403,13 +411,45 @@ public class EditResultActivity extends AppCompatActivity {
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        width*=.9;
-        height*=.9;
+        width *= .9;
+        height *= .9;
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.activity_popup_emotiongallery, (ViewGroup) findViewById(R.id.popup_element));
-        final PopupWindow pw = new PopupWindow(layout, width, height,true);
+        final PopupWindow pw = new PopupWindow(layout, width, height, true);
         pw.showAtLocation(findViewById(R.id.RelativeLayout1), Gravity.CENTER, 0, 0);
 
+
+        FirebaseRecyclerAdapter<EmotionImage, ImageViewHolder> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<EmotionImage, ImageViewHolder>(
+                        EmotionImage.class,
+                        R.layout.activity_popup_emotiongallery,
+                        ImageViewHolder.class, mImageDB) {
+                    @Override
+                    protected void populateViewHolder(ImageViewHolder viewHolder, EmotionImage model, int position) {
+                        viewHolder.setImage(getApplicationContext(), model.getImgUrl());
+
+                    }
+                };
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+
+
+    }
+
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+        View mView;
+        public ImageViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+        }
+
+        public void setImage(Context ctx, String image) {
+            ImageView mImage = (ImageView)mView.findViewById(R.id.emotionGallery_id);
+            Picasso.get().load(image).into(mImage);
+        }
+    }
+
+        /*
         ImageButton mChooseEmotionBtn1 = (ImageButton) layout.findViewById(R.id.emotionBtn1);
         ImageButton mChooseEmotionBtn2 = (ImageButton) layout.findViewById(R.id.emotionBtn2);
         ImageButton mChooseEmotionBtn3 = (ImageButton) layout.findViewById(R.id.emotionBtn3);
@@ -513,7 +553,7 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
     public void saveImage()
     {
         if (ActivityCompat.checkSelfPermission(EditResultActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

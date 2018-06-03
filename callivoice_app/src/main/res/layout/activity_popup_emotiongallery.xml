@@ -9,8 +9,9 @@
     android:padding="10sp"  >
 
     <android.support.v7.widget.RecyclerView
-        android:id = "@+id/emotionGallery"
+        android:id = "@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
