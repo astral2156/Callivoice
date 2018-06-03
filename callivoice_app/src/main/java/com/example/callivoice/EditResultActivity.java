@@ -11,16 +11,22 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.PersistableBundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -47,6 +53,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -70,7 +77,7 @@ public class EditResultActivity extends AppCompatActivity {
     private Button mShareBtn;
 
     final Context context = this;
-    private PhotoEditorView mPhotoEditorView;
+    public static PhotoEditorView mPhotoEditorView;
     private PhotoEditor mPhotoEditor;
     private StorageReference mStorage;
     private DatabaseReference mImageDB;
@@ -92,7 +99,8 @@ public class EditResultActivity extends AppCompatActivity {
     private String mFileName;
     private String mFilePath;
     private boolean saved;
-    private RecyclerView recyclerView;
+    private String randomImgUrl;
+    public static boolean changedBg = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +111,8 @@ public class EditResultActivity extends AppCompatActivity {
         final Typeface mSetFont = ResourcesCompat.getFont(EditResultActivity.this, selectedFont);
         Intent intent = getIntent();
         final String emotion = intent.getStringExtra("emotion");
+
+
         myText = intent.getStringExtra("text");
 
         mPhotoEditorView = findViewById(R.id.photoEditorView);
@@ -123,7 +133,7 @@ public class EditResultActivity extends AppCompatActivity {
         mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
         mSaveBtn = (Button) findViewById(R.id.save);
         mShareBtn = (Button) findViewById(R.id.share);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
 
 
 
@@ -136,6 +146,8 @@ public class EditResultActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int imgCount = 0;
                 int randomImage = 0;
+
+
                 if (emotion.equals("anger")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("anger").getChildren()) {
                         String key = childSnapshot.getKey();
@@ -148,7 +160,8 @@ public class EditResultActivity extends AppCompatActivity {
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
                     mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mAngerImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mAngerImages.get(randomImage - 1);
+                    Picasso.get().load(randomImgUrl).into(mPhotoEditorView.getSource());
                 }
                 if (emotion.equals("fear")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("fear").getChildren()) {
@@ -279,8 +292,9 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-
-                displayPopupEG(emotion);
+                Intent intent = new Intent(EditResultActivity.this, EmotionGalleryActivity.class);
+                intent.putExtra("emotion", emotion);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -403,157 +417,6 @@ public class EditResultActivity extends AppCompatActivity {
     }
 
 
-    public void displayPopupEG(final String emotion) {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        final String e = emotion;
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        width *= .9;
-        height *= .9;
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.activity_popup_emotiongallery, (ViewGroup) findViewById(R.id.popup_element));
-        final PopupWindow pw = new PopupWindow(layout, width, height, true);
-        pw.showAtLocation(findViewById(R.id.RelativeLayout1), Gravity.CENTER, 0, 0);
-
-
-        FirebaseRecyclerAdapter<EmotionImage, ImageViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<EmotionImage, ImageViewHolder>(
-                        EmotionImage.class,
-                        R.layout.activity_popup_emotiongallery,
-                        ImageViewHolder.class, mImageDB) {
-                    @Override
-                    protected void populateViewHolder(ImageViewHolder viewHolder, EmotionImage model, int position) {
-                        viewHolder.setImage(getApplicationContext(), model.getImgUrl());
-
-                    }
-                };
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
-
-
-
-    }
-
-    public static class ImageViewHolder extends RecyclerView.ViewHolder {
-        View mView;
-        public ImageViewHolder(View itemView) {
-            super(itemView);
-            mView = itemView;
-        }
-
-        public void setImage(Context ctx, String image) {
-            ImageView mImage = (ImageView)mView.findViewById(R.id.emotionGallery_id);
-            Picasso.get().load(image).into(mImage);
-        }
-    }
-
-        /*
-        ImageButton mChooseEmotionBtn1 = (ImageButton) layout.findViewById(R.id.emotionBtn1);
-        ImageButton mChooseEmotionBtn2 = (ImageButton) layout.findViewById(R.id.emotionBtn2);
-        ImageButton mChooseEmotionBtn3 = (ImageButton) layout.findViewById(R.id.emotionBtn3);
-        ImageButton mChooseEmotionBtn4 = (ImageButton) layout.findViewById(R.id.emotionBtn4);
-        Button mCloseEmotionBtn = (Button) layout.findViewById(R.id.closePopupBtn);
-
-        if(e.equals("anger")) {
-            Picasso.get().load(mAngerImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mAngerImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mAngerImages.get(2)).into(mChooseEmotionBtn3);
-            Picasso.get().load(mAngerImages.get(3)).into(mChooseEmotionBtn4);
-        }
-        if(e.equals("fear")) {
-            Picasso.get().load(mFearImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mFearImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mFearImages.get(2)).into(mChooseEmotionBtn3);
-            Picasso.get().load(mFearImages.get(3)).into(mChooseEmotionBtn4);
-        }
-
-        if(e.equals("love")) {
-            Picasso.get().load(mLoveImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mLoveImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mLoveImages.get(2)).into(mChooseEmotionBtn3);
-            Picasso.get().load(mLoveImages.get(3)).into(mChooseEmotionBtn4);
-        }
-
-        if(e.equals("sadness")) {
-            Picasso.get().load(mSadnessImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mSadnessImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mSadnessImages.get(2)).into(mChooseEmotionBtn3);
-            Picasso.get().load(mSadnessImages.get(3)).into(mChooseEmotionBtn4);
-        }
-
-        if(e.equals("surprise")) {
-            Picasso.get().load(mSurpriseImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mSurpriseImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mSurpriseImages.get(2)).into(mChooseEmotionBtn3);
-        }
-
-        if(e.equals("joy")) {
-            Picasso.get().load(mJoyImages.get(0)).into(mChooseEmotionBtn1);
-            Picasso.get().load(mJoyImages.get(1)).into(mChooseEmotionBtn2);
-            Picasso.get().load(mJoyImages.get(2)).into(mChooseEmotionBtn3);
-            Picasso.get().load(mJoyImages.get(3)).into(mChooseEmotionBtn4);
-        }
-
-        mChooseEmotionBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(e.equals("anger")) Picasso.get().load(mAngerImages.get(0)).into(mPhotoEditorView.getSource());
-                if(e.equals("fear")) Picasso.get().load(mFearImages.get(0)).into(mPhotoEditorView.getSource());
-                if(e.equals("love")) Picasso.get().load(mLoveImages.get(0)).into(mPhotoEditorView.getSource());
-                if(e.equals("sadness")) Picasso.get().load(mSadnessImages.get(0)).into(mPhotoEditorView.getSource());
-                if(e.equals("surprise")) Picasso.get().load(mSurpriseImages.get(0)).into(mPhotoEditorView.getSource());
-                if(e.equals("joy")) Picasso.get().load(mJoyImages.get(0)).into(mPhotoEditorView.getSource());
-                pw.dismiss();
-            }
-        });
-
-        mChooseEmotionBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(e.equals("anger")) Picasso.get().load(mAngerImages.get(1)).into(mPhotoEditorView.getSource());
-                if(e.equals("fear")) Picasso.get().load(mFearImages.get(1)).into(mPhotoEditorView.getSource());
-                if(e.equals("love")) Picasso.get().load(mLoveImages.get(1)).into(mPhotoEditorView.getSource());
-                if(e.equals("sadness")) Picasso.get().load(mSadnessImages.get(1)).into(mPhotoEditorView.getSource());
-                if(e.equals("surprise")) Picasso.get().load(mSurpriseImages.get(1)).into(mPhotoEditorView.getSource());
-                if(e.equals("joy")) Picasso.get().load(mJoyImages.get(1)).into(mPhotoEditorView.getSource());
-                pw.dismiss();
-            }
-        });
-
-        mChooseEmotionBtn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(e.equals("anger")) Picasso.get().load(mAngerImages.get(2)).into(mPhotoEditorView.getSource());
-                if(e.equals("fear")) Picasso.get().load(mFearImages.get(2)).into(mPhotoEditorView.getSource());
-                if(e.equals("love")) Picasso.get().load(mLoveImages.get(2)).into(mPhotoEditorView.getSource());
-                if(e.equals("sadness")) Picasso.get().load(mSadnessImages.get(2)).into(mPhotoEditorView.getSource());
-                if(e.equals("surprise")) Picasso.get().load(mSurpriseImages.get(2)).into(mPhotoEditorView.getSource());
-                if(e.equals("joy")) Picasso.get().load(mJoyImages.get(2)).into(mPhotoEditorView.getSource());
-                pw.dismiss();
-            }
-        });
-
-        mChooseEmotionBtn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(e.equals("anger")) Picasso.get().load(mAngerImages.get(3)).into(mPhotoEditorView.getSource());
-                if(e.equals("fear")) Picasso.get().load(mFearImages.get(3)).into(mPhotoEditorView.getSource());
-                if(e.equals("love")) Picasso.get().load(mLoveImages.get(3)).into(mPhotoEditorView.getSource());
-                if(e.equals("sadness")) Picasso.get().load(mSadnessImages.get(3)).into(mPhotoEditorView.getSource());
-                if(e.equals("joy")) Picasso.get().load(mJoyImages.get(3)).into(mPhotoEditorView.getSource());
-                pw.dismiss();
-            }
-        });
-        mCloseEmotionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pw.dismiss();
-            }
-        });
-    }
-*/
     public void saveImage()
     {
         if (ActivityCompat.checkSelfPermission(EditResultActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -593,4 +456,6 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
