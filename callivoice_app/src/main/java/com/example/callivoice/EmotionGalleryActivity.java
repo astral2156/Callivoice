@@ -59,7 +59,7 @@ public class EmotionGalleryActivity extends AppCompatActivity {
                         }
                     }
                 }
-                adapter = new RecyclerAdapter(images);
+                adapter = new RecyclerAdapter(images, true);
                 recyclerView.setAdapter(adapter);
             }
             @Override
