@@ -418,7 +418,7 @@ public class EditResultActivity extends AppCompatActivity {
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        width*=.6;
+        width*=.8;
         height*=.8;
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View layout = inflater.inflate(R.layout.activity_popup_emoticon, (ViewGroup) findViewById(R.id.popup_element));
@@ -434,8 +434,10 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mPhotoEditor.clearAllViews();
+                selectedFont = R.font.thefaceshop;
+                Typeface mTheFaceShopTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
+                //mPhotoEditor.clearAllViews();
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.love1);
                 Bitmap bitmap = drawable.getBitmap();
