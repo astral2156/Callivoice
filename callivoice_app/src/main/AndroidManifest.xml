@@ -47,7 +47,9 @@
         <activity
             android:name=".PopupFontActivity"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".EmotionGalleryActivity"></activity>
+        <activity android:name=".EmotionGalleryActivity" />
+        <activity android:name=".UserGalleryActivity" />
+        <activity android:name=".UserImageEditActivity"></activity>
     </application>
 
 </manifest>

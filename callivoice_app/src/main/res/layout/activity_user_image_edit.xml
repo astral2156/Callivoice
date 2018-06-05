@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".UserImageEditActivity"
+    android:id="@+id/imageEditLayout">
+
+    <ja.burhanrashid52.photoeditor.PhotoEditorView
+        android:id="@+id/photoEditorViewForEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/changeFontBtn"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="54dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/button_editresult_font" />
+
+    <Button
+        android:id="@+id/emojiBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/changeFontBtn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_editresult_emoticon" />
+
+    <Button
+        android:id="@+id/emotionGalleryBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/confirmEditBtn"
+        android:layout_alignTop="@+id/changeFontBtn"
+        android:background="@drawable/button_editresult_selectbg" />
+
+    <Button
+        android:id="@+id/mBackBtn"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/button_editresult_back" />
+
+    <Button
+        android:id="@+id/confirmEditBtn"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/ic_menu_send" />
+
+
+</RelativeLayout>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Callivoice.iml" filepath="$PROJECT_DIR$/Callivoice.iml" />
       <module fileurl="file://$PROJECT_DIR$/GitHub.iml" filepath="$PROJECT_DIR$/GitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/callivoice_app/callivoice_app.iml" filepath="$PROJECT_DIR$/callivoice_app/callivoice_app.iml" />

@@ -5,6 +5,7 @@ package com.example.callivoice;
  */
 
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.PersistableBundle;
@@ -43,7 +45,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,6 +71,7 @@ import java.util.Map;
 import ja.burhanrashid52.photoeditor.OnPhotoEditorListener;
 import ja.burhanrashid52.photoeditor.PhotoEditor;
 import ja.burhanrashid52.photoeditor.PhotoEditorView;
+import ja.burhanrashid52.photoeditor.*;
 import ja.burhanrashid52.photoeditor.ViewType;
 
 public class EditResultActivity extends AppCompatActivity {
@@ -81,6 +87,7 @@ public class EditResultActivity extends AppCompatActivity {
     private PhotoEditor mPhotoEditor;
     private StorageReference mStorage;
     private DatabaseReference mImageDB;
+    private DatabaseReference mUserDB;
     private ArrayList<String> mAngerImages = new ArrayList();
     private ArrayList<String> mLoveImages = new ArrayList();
     private ArrayList<String> mFearImages = new ArrayList();
@@ -99,8 +106,8 @@ public class EditResultActivity extends AppCompatActivity {
     private String mFileName;
     private String mFilePath;
     private boolean saved;
-    private String randomImgUrl;
-    public static boolean changedBg = false;
+    public static String randomImgUrl;
+    public static String emotion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,16 +117,16 @@ public class EditResultActivity extends AppCompatActivity {
 
         final Typeface mSetFont = ResourcesCompat.getFont(EditResultActivity.this, selectedFont);
         Intent intent = getIntent();
-        final String emotion = intent.getStringExtra("emotion");
+        emotion = intent.getStringExtra("emotion");
 
 
         myText = intent.getStringExtra("text");
 
         mPhotoEditorView = findViewById(R.id.photoEditorView);
-
         mPhotoEditor = new PhotoEditor.Builder(this, mPhotoEditorView).setPinchTextScalable(true).build();
         mStorage = FirebaseStorage.getInstance().getReference();
         mImageDB = FirebaseDatabase.getInstance().getReference().child("Images");
+        mUserDB =  FirebaseDatabase.getInstance().getReference().child("Users");
         TextView mCalliText = findViewById(R.id.calliTextView);
 
         mFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "callivoice";
@@ -159,9 +166,7 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
                     randomImgUrl = mAngerImages.get(randomImage - 1);
-                    Picasso.get().load(randomImgUrl).into(mPhotoEditorView.getSource());
                 }
                 if (emotion.equals("fear")) {
                     for (DataSnapshot childSnapshot : dataSnapshot.child("fear").getChildren()) {
@@ -174,8 +179,7 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mFearImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mFearImages.get(randomImage - 1);
                 }
 
                 if (emotion.equals("love")) {
@@ -189,8 +193,7 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mLoveImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mLoveImages.get(randomImage - 1);
                 }
 
                 if (emotion.equals("sadness")) {
@@ -204,8 +207,7 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mSadnessImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mSadnessImages.get(randomImage - 1);
                 }
 
                 if (emotion.equals("surprise")) {
@@ -220,8 +222,7 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mSurpriseImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mSurpriseImages.get(randomImage - 1);
                 }
 
                 if (emotion.equals("joy")) {
@@ -235,9 +236,10 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
-                    Picasso.get().load(mJoyImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
+                    randomImgUrl = mJoyImages.get(randomImage - 1);
                 }
+                mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                Picasso.get().load(randomImgUrl).into(mPhotoEditorView.getSource());
                 System.out.println(imgCount);
             }
 
@@ -292,9 +294,11 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
+                boolean isResultActivity = true;
                 Intent intent = new Intent(EditResultActivity.this, EmotionGalleryActivity.class);
                 intent.putExtra("emotion", emotion);
-                startActivityForResult(intent, 1);
+                intent.putExtra("isResultActivity", isResultActivity);
+                startActivity(intent);
             }
         });
 
@@ -420,6 +424,7 @@ public class EditResultActivity extends AppCompatActivity {
     public void saveImage()
     {
         if (ActivityCompat.checkSelfPermission(EditResultActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             Toast.makeText(getApplicationContext(), "저장 권한을 승인받아야 합니다", Toast.LENGTH_LONG).show();
             return;
         }
@@ -432,6 +437,7 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
             public void onSuccess(@NonNull String imagePath) {
                 saved = true;
+                mPhotoEditor.addText(myText, Color.rgb(255,255,255));
                 Log.e("PhotoEditor", "Image Saved Successfully");
                 Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
             }
@@ -444,17 +450,37 @@ public class EditResultActivity extends AppCompatActivity {
         });
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String userID = firebaseAuth.getCurrentUser().getUid();
-        Uri file_uri = Uri.fromFile(new File(mFileName));
+        final String userID = firebaseAuth.getCurrentUser().getUid();
+        final Uri file_uri = Uri.fromFile(new File(mFileName));
 
-        StorageReference mUserImageRef = mStorage.child("user_images/"+ userID +"/" +file_uri.getLastPathSegment());
+        final StorageReference mUserImageRef = mStorage.child("user_images/"+ userID +"/" +file_uri.getLastPathSegment());
         UploadTask uploadTask = mUserImageRef.putFile(file_uri);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                System.out.println("Image upload successfully");
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if(!task.isSuccessful()) throw task.getException();
+                return mUserImageRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    String url = downloadUri.toString();
+                    mUserDB.child(userID).child("images");
+                    String key = mUserDB.child(userID).child("images").push().getKey();
+                    String result_img = url;
+                    String mEmotion = emotion;
+                    Map newPost = new HashMap();
+                    newPost.put("result_img", result_img);
+                    newPost.put("src_img", randomImgUrl);
+                    newPost.put("text", myText);
+                    newPost.put("emotion", mEmotion);
+                    mUserDB.child(userID).child("images").child(key).setValue(newPost);
+                }
             }
         });
+
     }
 
 

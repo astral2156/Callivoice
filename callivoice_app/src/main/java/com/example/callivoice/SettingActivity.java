@@ -81,27 +81,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                AlertDialog.Builder exitDialogBuilder = new AlertDialog.Builder(context);
-                exitDialogBuilder.setTitle("종료하기");
-                exitDialogBuilder.setMessage("뒤로 가시겠습니까?").setCancelable(false)
-                        .setPositiveButton("뒤로가기",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        finish();
-                                    }
-                                })
-                        .setNegativeButton("취소",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.cancel();
-                                    }
-                                });
-
-                AlertDialog exitDialog = exitDialogBuilder.create();
-
-                exitDialog.show();
+                finish();
             }
         });
 

@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private EditText mUserText;
     private Button mSendBtn;
-    private Button mGoToResultBtn; //activity_edit_result로 이동하는 버튼. 임시로 추가함 by 이성수
     private SpeechRecognizer mSpeechRecognizer;
     private Intent mSpeechRecognizerIntent;
+    private Button mGalleryBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mRecordButton = (Button) findViewById(R.id.voiceRecordBtn);
         mUserText = (EditText) findViewById(R.id.userSpeechText);
         mSendBtn = (Button) findViewById(R.id.sendToDB);
-        mGoToResultBtn = (Button) findViewById(R.id.GoToResult);
+        mGalleryBtn = (Button) findViewById(R.id.user_galleryBtn);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(matches!=null) {
                     mUserText.setText(matches.get(0));
+                }
+                if(matches.get(0).equals("캘리 설정 열어줘")) {
+                    Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                    startActivity(intent);
                 }
             }
 
@@ -183,11 +187,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mGoToResultBtn.setOnClickListener(new View.OnClickListener() {
+
+        mGalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent i = new Intent(MainActivity.this, EditResultActivity.class);
+                Intent i = new Intent(MainActivity.this, UserGalleryActivity.class);
                 startActivity(i);
             }
         });

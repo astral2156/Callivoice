@@ -50,16 +50,7 @@
         android:text="시작" />
 
     <Button
-        android:id="@+id/GoToResult"
-        android:layout_width="116dp"
-        android:layout_height="37dp"
-        android:layout_alignStart="@+id/sendToDB"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/button1"
-        android:text="결과 수정용" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/user_galleryBtn"
         android:layout_width="54dp"
         android:layout_height="43dp"
         android:layout_alignBottom="@+id/settingBtn"
