@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -107,6 +108,7 @@ public class EditResultActivity extends AppCompatActivity {
         TextView mCalliText = findViewById(R.id.calliTextView);
 
         mFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "callivoice";
+        //mFilePath = "/storage/emulated/0/Pictures/callivoice";
         mFileName = mFilePath + "/image" + System.currentTimeMillis() + ".jpg";
         saved = false;
 
@@ -288,11 +290,12 @@ public class EditResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!saved) saveImage();
 
-                Uri uri = Uri.fromFile(new File(mFileName));
+                File sharefile = new File(mFileName);
+                Uri uri =  FileProvider.getUriForFile(EditResultActivity.this, "com.callivoice.fileprovider", sharefile);
 
                 Intent share_intent = new Intent();
                 share_intent.setAction(Intent.ACTION_SEND);
-                share_intent.setType("image/jpg");
+                share_intent.setType("image/*");
                 share_intent.putExtra(Intent.EXTRA_STREAM, uri);
 
                 Intent chooser = Intent.createChooser(share_intent, "이미지 공유하기");
