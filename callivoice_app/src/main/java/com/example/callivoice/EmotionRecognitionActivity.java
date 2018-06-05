@@ -125,9 +125,18 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        final CalliVoice userdata = (CalliVoice)getApplication();
+
+        userdata.UsersText.clear();
+    }
+
 
     public void readDB () {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("emotions"); //데이터베이스에 있는 parent를 가리킨다 (예시: Callivoice(root)/emotions(parent))
+        final CalliVoice userdata = (CalliVoice)getApplication();
         //가리킨 Reference에 ValueListener (데이터베이스 읽기):
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -164,6 +173,13 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                 //감정인식 알고리즘:  (향상 시킬 예정)
                 //사용자 입력한 텍스트를 감정사전과 비교해서 찾은 단어들을 각자 리스트에 저장한다
                 int myIndex;
+
+                String TextArr[] = myText.split(" ");
+                for(int i=0;i<TextArr.length;i++)
+                {
+                    userdata.UsersText.add(TextArr[i]);
+                }
+
                 for (int i = 0; i < size; i++) {
                     if (i < 0) i = 0;
 
@@ -240,6 +256,12 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
                 }
 
+                PutInArr(userdata.UsersAnger, angryList);
+                PutInArr(userdata.UsersFear, fearList);
+                PutInArr(userdata.UsersJoy, joyList);
+                PutInArr(userdata.UsersSad, sadnessList);
+                PutInArr(userdata.UsersLove, loveList);
+                PutInArr(userdata.UsersSurprise, surpriseList);
                 //System.out.println("After count (hey): Love: " + loveList.size() + ", Anger: " + angryList.size() + "\n"); //Debug
 
                 myText = tempText;
@@ -306,7 +328,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                     carouselPicker.setCurrentItem(0);
                 }
                 mFoundWordsTextView.setText("Your emotion is: " + emotion);
-
+                userdata.UsersEmotion=emotion;
                 carouselPicker.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -340,7 +362,10 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
                     }
                 });
+
+                userdata.UsersEmotion=emotion;
             }
+
 
 
 
@@ -349,11 +374,13 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
-
+    public static void PutInArr(ArrayList<String> userdata, ArrayList<String> Arr)
+    {
+        for(int i=0;i<Arr.size();i++)
+        {
+            userdata.add(Arr.get(i));
+        }
+    }
 
 }

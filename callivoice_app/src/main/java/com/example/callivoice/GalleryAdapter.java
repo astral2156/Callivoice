@@ -1,13 +1,19 @@
 package com.example.callivoice;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,9 +39,12 @@ import com.squareup.picasso.Target;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.internal.Util;
 
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>{
@@ -44,9 +53,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String key;
+    private boolean saved = false;
+    Context context;
 
-    public GalleryAdapter(ArrayList<String> images) {
+    public GalleryAdapter(ArrayList<String> images, Context context) {
         this.images = images;
+        this.context = context;
     }
 
     @NonNull
@@ -83,6 +95,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
                             out.flush();
                             out.close();
                             Toast.makeText(v.getContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
+                            saved = true;
                         }
                         catch(Exception e) {
 
@@ -102,20 +115,40 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
             }
         });
 
+        holder.mShareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Picasso.get().load(image).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        Intent share_intent = new Intent();
+                        share_intent.setAction(Intent.ACTION_SEND);
+                        share_intent.setType("image/*");
+                        share_intent.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap,context));
+                        context.startActivity(Intent.createChooser(share_intent, "이미지 공유하기"));
+                        System.out.println("CLICKED");
+                    }
+
+
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                });
+            }
+        });
+
         holder.mEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), UserImageEditActivity.class);
                 intent.putExtra("resultUrl", image);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                ((Activity) v.getContext()).startActivity(intent);
-            }
-        });
-
-        holder.mShareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                context.startActivity(intent);
             }
         });
 
@@ -165,11 +198,30 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
 
             }
         });
+
+
     }
 
     @Override
     public int getItemCount() {
         return images.size();
+    }
+
+    static public Uri getLocalBitmapUri(Bitmap bmp, Context c) {
+        Uri bmpUri = null;
+        try {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            File file =  new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "callivoice/" + "share_image_"+System.currentTimeMillis() + ".jpg");
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.close();
+            out.flush();
+            bmpUri = Uri.fromFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
     }
 
     public void removeAt (int position) {

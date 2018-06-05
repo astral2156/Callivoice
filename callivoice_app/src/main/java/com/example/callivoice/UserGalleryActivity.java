@@ -61,7 +61,7 @@ public class UserGalleryActivity extends AppCompatActivity {
                         }
                     }
                 }
-                    galleryAdapter = new GalleryAdapter(images);
+                    galleryAdapter = new GalleryAdapter(images, UserGalleryActivity.this);
                     recyclerView.setAdapter(galleryAdapter);
 
             }
