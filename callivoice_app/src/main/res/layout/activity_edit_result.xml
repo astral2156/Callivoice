@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_editresult"
+    android:id="@+id/RelativeLayout1">
+
+    <Button
+        android:id="@+id/imoticon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_editresult_emoticon" />
+
+    <ja.burhanrashid52.photoeditor.PhotoEditorView
+        android:id="@+id/photoEditorView"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imoticon"
+        android:layout_marginTop="10dp"
+        app:photo_src="@drawable/color_cursor" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/save"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/button_editresult_back" />
+
+    <Button
+        android:id="@+id/font"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_above="@+id/photoEditorView"
+        android:layout_alignStart="@+id/back"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/button_editresult_font" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/photoEditorView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_editresult_save" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/photoEditorView"
+        android:layout_alignTop="@+id/save"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_editresult_share" />
+
+    <Button
+        android:id="@+id/emotionGalleryBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/photoEditorView"
+        android:layout_alignTop="@+id/imoticon"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_editresult_selectbg" />
+
+    <TextView
+        android:id="@+id/calliTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="123dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/save"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
