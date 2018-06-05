@@ -22,40 +22,39 @@
 
     <ImageButton
         android:id="@+id/emotionBtn1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="62dp"
-        android:background="@drawable/button_editresult_fontbutton2" />
+        android:background="@drawable/love1" />
 
     <ImageButton
         android:id="@+id/emotionBtn2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignTop="@+id/emotionBtn1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/button_editresult_fontbutton2" />
+        android:layout_alignTop="@+id/emotionBtn1"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/smile1" />
 
     <ImageButton
         android:id="@+id/emotionBtn3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignStart="@+id/emotionBtn1"
-        android:layout_below="@+id/emotionBtn1"
-        android:layout_marginTop="41dp"
-        android:background="@drawable/button_editresult_fontbutton2" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/emotionBtn1"
+        android:layout_marginStart="114dp"
+        android:background="@drawable/smile1" />
 
     <ImageButton
         android:id="@+id/emotionBtn4"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignTop="@+id/emotionBtn3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/button_editresult_fontbutton2" />
-
+        android:layout_alignTop="@+id/emotionBtn1"
+        android:layout_marginEnd="106dp"
+        android:background="@drawable/smile1" />
 
 </RelativeLayout>

@@ -12,8 +12,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -64,6 +68,7 @@ public class EditResultActivity extends AppCompatActivity {
     private Button mEmotionGalleryBtn;
     private Button mSaveBtn;
     private Button mShareBtn;
+    private Button mEmoticonBtn;
 
     final Context context = this;
     private PhotoEditorView mPhotoEditorView;
@@ -119,6 +124,7 @@ public class EditResultActivity extends AppCompatActivity {
         mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
         mSaveBtn = (Button) findViewById(R.id.save);
         mShareBtn = (Button) findViewById(R.id.share);
+        mEmoticonBtn = (Button) findViewById(R.id.imoticon);
 
 
         String callitext = intent.getStringExtra("CALLITEXT_KEY");
@@ -268,6 +274,17 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
 
+        mEmoticonBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+
+            public void onClick(View v)
+            {
+                displayPopupEmoji();
+            }
+        });
+
+
+
         mEmotionGalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -393,6 +410,191 @@ public class EditResultActivity extends AppCompatActivity {
                 pw.dismiss();
             }
         });
+    }
+
+
+    public void displayPopupEmoji() {// 수정하기 kdy
+
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        width*=.8;
+        height*=.8;
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.activity_popup_emoticon, (ViewGroup) findViewById(R.id.popup_element));
+        final PopupWindow pw = new PopupWindow(layout, width, height,true);
+        pw.showAtLocation(findViewById(R.id.RelativeLayout1), Gravity.CENTER, 0, 0);
+
+        Button mChooseEmojiBtn1 = (Button) layout.findViewById(R.id.emojiBtn1);
+        Button mChooseEmojiBtn2 = (Button) layout.findViewById(R.id.emojiBtn2);
+        Button mChooseEmojiBtn3 = (Button) layout.findViewById(R.id.emojiBtn3);
+        Button mChooseEmojiBtn4 = (Button) layout.findViewById(R.id.emojiBtn4);
+        Button mChooseEmojiBtn5 = (Button) layout.findViewById(R.id.emojiBtn5);
+        Button mChooseEmojiBtn6 = (Button) layout.findViewById(R.id.emojiBtn6);
+        Button mChooseEmojiBtn7 = (Button) layout.findViewById(R.id.emojiBtn7);
+        Button mChooseEmojiBtn8 = (Button) layout.findViewById(R.id.emojiBtn8);
+        Button mChooseEmojiBtn9 = (Button) layout.findViewById(R.id.emojiBtn9);
+        Button mChooseEmojiBtn10 = (Button) layout.findViewById(R.id.emojiBtn10);
+        Button mChooseEmojiBtn11 = (Button) layout.findViewById(R.id.emojiBtn11);
+        Button mChooseEmojiBtn12 = (Button) layout.findViewById(R.id.emojiBtn12);
+        Button mCloseFontBtn1 = (Button) layout.findViewById(R.id.closePopupBtn1);
+
+
+        mChooseEmojiBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.love1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+        mChooseEmojiBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.gloom1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+        mChooseEmojiBtn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.shy1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.sleep2);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile4);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+        mChooseEmojiBtn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile2);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile3);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+        mChooseEmojiBtn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.sleep1);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+        mChooseEmojiBtn12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
+                pw.dismiss();
+                BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger2);
+                Bitmap bitmap = drawable.getBitmap();
+                mPhotoEditor.addImage(bitmap);
+            }
+        });
+
+
+
+
+
+        mCloseFontBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pw.dismiss();
+            }
+        });
+    }
+
+
+    public Bitmap convertToBitmap(Drawable drawable, int widthPixels, int heightPixels) {
+        Bitmap mutableBitmap = Bitmap.createBitmap(widthPixels, heightPixels, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(mutableBitmap);
+        drawable.setBounds(0, 0, widthPixels, heightPixels);
+        drawable.draw(canvas);
+
+        return mutableBitmap;
     }
 
 
