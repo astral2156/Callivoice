@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_element"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,26 +28,111 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="46dp"
         android:background="@drawable/love1" />
 
     <Button
         android:id="@+id/emojiBtn2"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/emotionBtn1"
-        android:layout_marginEnd="18dp"
-        android:background="@drawable/smile1" />
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/emojiBtn1"
+        android:layout_marginStart="120dp"
+        android:background="@drawable/gloom1" />
 
     <Button
         android:id="@+id/emojiBtn3"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/emotionBtn1"
-        android:layout_marginStart="114dp"
-        android:background="@drawable/smile1" />
+        android:layout_alignTop="@+id/emojiBtn1"
+        android:layout_marginStart="220dp"
+        android:background="@drawable/smile1"
+        android:paddingStart="15dp" />
+
+    <Button
+        android:id="@+id/emojiBtn4"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/emojiBtn1"
+        android:layout_marginTop="137dp"
+        android:background="@drawable/anger1" />
+
+
+    <Button
+        android:id="@+id/emojiBtn5"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn2"
+        android:layout_alignTop="@+id/emojiBtn4"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/shy1" />
+
+    <Button
+        android:id="@+id/emojiBtn6"
+        android:layout_width="69dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn3"
+        android:layout_alignTop="@+id/emojiBtn4"
+        android:background="@drawable/sleep2" />
+
+    <Button
+        android:id="@+id/emojiBtn7"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/emojiBtn4"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/smile4" />
+
+
+    <Button
+        android:id="@+id/emojiBtn8"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn5"
+        android:layout_alignTop="@+id/emojiBtn7"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/smile2" />
+
+    <Button
+        android:id="@+id/emojiBtn9"
+        android:layout_width="69dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn3"
+        android:layout_alignTop="@+id/emojiBtn7"
+        android:background="@drawable/smile3" />
+
+    <Button
+        android:id="@+id/emojiBtn10"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/emojiBtn4"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/anger1" />
+
+
+    <Button
+        android:id="@+id/emojiBtn11"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn5"
+        android:layout_alignTop="@+id/emojiBtn10"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/sleep1" />
+
+    <Button
+        android:id="@+id/emojiBtn12"
+        android:layout_width="69dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/emojiBtn3"
+        android:layout_alignTop="@+id/emojiBtn10"
+        android:background="@drawable/anger2" />
+
 
 
 </RelativeLayout>
