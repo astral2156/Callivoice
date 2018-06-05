@@ -32,12 +32,14 @@
 
     <ImageButton
         android:id="@+id/emotionBtn2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/emotionBtn1"
-        android:layout_marginEnd="18dp"
-        android:background="@drawable/smile1" />
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_editresult_fontbutton2" />
+
 
     <ImageButton
         android:id="@+id/emotionBtn3"
@@ -53,8 +55,8 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/emotionBtn1"
-        android:layout_marginEnd="106dp"
-        android:background="@drawable/smile1" />
+
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_editresult_fontbutton2" />
 
 </RelativeLayout>
