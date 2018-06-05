@@ -41,6 +41,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
     private ArrayList<String> sadnessList = new ArrayList<>();
     private ArrayList<String> loveList = new ArrayList<>();
     private ArrayList<String> surpriseList = new ArrayList<>();
+    private ArrayList<String> ALLlist = new ArrayList<>();
     private int size;
     private TextView mFoundWordsTextView;
     private String myText;
@@ -61,7 +62,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotion_recognition);
 
-        //identifying Text and Buttons
+        //identifying Text and Image Views
         mUserTextView = (TextView) findViewById(R.id.userTextView);
         mFoundWordsTextView = (TextView) findViewById(R.id.wordList);
         mNextBtn = (Button) findViewById(R.id.goToImageEditBtn);
@@ -112,7 +113,6 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
         //실시간 데이터베이스에 들어가는 단어들을 읽고 감정을 분석하는 함수:
         readDB();
 
-
         mNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,9 +125,18 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        final CalliVoice userdata = (CalliVoice)getApplication();
+
+        userdata.UsersText.clear();
+    }
 
     public void readDB () {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("emotions"); //데이터베이스에 있는 parent를 가리킨다 (예시: Callivoice(root)/emotions(parent))
+        final CalliVoice userdata = (CalliVoice)getApplication();
+
         //가리킨 Reference에 ValueListener (데이터베이스 읽기):
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -164,81 +173,116 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                 //감정인식 알고리즘:  (향상 시킬 예정)
                 //사용자 입력한 텍스트를 감정사전과 비교해서 찾은 단어들을 각자 리스트에 저장한다
                 int myIndex;
-                for (int i = 0; i < size; i++) {
-                    if (i < 0) i = 0;
 
-                    if(!(i>=mAngerWords.size())) {
-                        if (myText.contains(mAngerWords.get(i))) {
+                String TextArr[] = myText.split(" ");
+                for(int i=0;i<TextArr.length;i++)
+                {
+                    userdata.UsersText.add(TextArr[i]);
+                }
 
-                            myIndex = myText.indexOf(mAngerWords.get(i));
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mAngerWords.get(i).length());
+                ArrayList<String> TempArr = new ArrayList<>();
+                for(int k=0;k<TextArr.length;k++)
+                {
+                    boolean Isnothing = true;
 
-                            angryList.add(mAngerWords.get(i));
-                            i--;
+                    for (int i = 0; i < size; i++) {
+                        if (i < 0) i = 0;
+
+                        if(!(i>=mAngerWords.size())) {
+                            if (TextArr[k].contains(mAngerWords.get(i))) {
+
+                                myIndex = TextArr[k].indexOf(mAngerWords.get(i));
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mAngerWords.get(i).length());
+
+                                angryList.add(mAngerWords.get(i));
+                                i--;
+                            }
+
+                            Isnothing = false;
                         }
-                    }
-                    if (!(i>=mJoyWords.size())) {
-                        if (myText.contains(mJoyWords.get(i))) {
+                        if (!(i>=mJoyWords.size())) {
+                            if (TextArr[k].contains(mJoyWords.get(i))) {
 
-                            myIndex = myText.indexOf(mJoyWords.get(i));
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mJoyWords.get(i).length());
+                                myIndex = TextArr[k].indexOf(mJoyWords.get(i));
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mJoyWords.get(i).length());
 
-                            joyList.add(mJoyWords.get(i));
-                            i--;
+                                joyList.add(mJoyWords.get(i));
+                                i--;
+                            }
+
+                            Isnothing = false;
                         }
-                    }
-                    if (!(i>=mSadWords.size())) {
-                        if (myText.contains(mSadWords.get(i))) {
+                        if (!(i>=mSadWords.size())) {
+                            if (TextArr[k].contains(mSadWords.get(i))) {
 
-                            myIndex = myText.indexOf(mSadWords.get(i));
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mSadWords.get(i).length());
+                                myIndex = TextArr[k].indexOf(mSadWords.get(i));
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mSadWords.get(i).length());
 
-                            sadnessList.add(mSadWords.get(i));
-                            i--;
+                                sadnessList.add(mSadWords.get(i));
+                                i--;
+                            }
                         }
-                    }
-                    if (!(i>=mFearWords.size())) {
-                        if (myText.contains(mFearWords.get(i))) {
+                        if (!(i>=mFearWords.size())) {
+                            if (TextArr[k].contains(mFearWords.get(i))) {
 
-                            myIndex = myText.indexOf(mFearWords.get(i));
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mFearWords.get(i).length());
+                                myIndex = TextArr[k].indexOf(mFearWords.get(i));
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mFearWords.get(i).length());
 
-                            fearList.add(mFearWords.get(i));
-                            i--;
+                                fearList.add(mFearWords.get(i));
+                                i--;
+                            }
+
+                            Isnothing = false;
                         }
-                    }
-                    if (!(i>=mSurpriseWords.size())) {
-                        if (myText.contains(mSurpriseWords.get(i))) {
+                        if (!(i>=mSurpriseWords.size())) {
+                            if (TextArr[k].contains(mSurpriseWords.get(i))) {
 
-                            myIndex = myText.indexOf(mSurpriseWords.get(i));
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mSurpriseWords.get(i).length());
+                                myIndex = TextArr[k].indexOf(mSurpriseWords.get(i));
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mSurpriseWords.get(i).length());
 
 
-                            surpriseList.add(mSurpriseWords.get(i));
-                            i--;
+                                surpriseList.add(mSurpriseWords.get(i));
+                                i--;
+                            }
+                            Isnothing = false;
                         }
-                    }
-                    if (!(i>=mLoveWords.size())) {
-                        if (myText.contains(mLoveWords.get(i))) {
+                        if (!(i>=mLoveWords.size())) {
+                            if (TextArr[k].contains(mLoveWords.get(i))) {
 
-                            myIndex = myText.indexOf(mLoveWords.get(i));
-                            //I love not you
+                                myIndex = TextArr[k].indexOf(mLoveWords.get(i));
+                                //I love not you
 
                             /*
 
                             Check for negative
 
                              */
-                            myText = myText.substring(0,myIndex) + myText.substring(myIndex + mLoveWords.get(i).length());
+                                TextArr[k] = TextArr[k].substring(0,myIndex) + TextArr[k].substring(myIndex + mLoveWords.get(i).length());
 
-                            loveList.add(mLoveWords.get(i));
-                            i--;
+                                loveList.add(mLoveWords.get(i));
+                                i--;
+                            }
+
+                            Isnothing = false;
                         }
+
+                        //System.out.println("Current MyText (hey): " + myText);  //Debug
+
                     }
 
-                    //System.out.println("Current MyText (hey): " + myText);  //Debug
+                    if(Isnothing == true)
+                    {
+                        TempArr.add(TextArr[k]);
+                    }
 
                 }
+
+                PutInArr(userdata.UsersAnger, angryList);
+                PutInArr(userdata.UsersFear, fearList);
+                PutInArr(userdata.UsersJoy, joyList);
+                PutInArr(userdata.UsersSad, sadnessList);
+                PutInArr(userdata.UsersLove, loveList);
+                PutInArr(userdata.UsersSurprise, surpriseList);
 
                 //System.out.println("After count (hey): Love: " + loveList.size() + ", Anger: " + angryList.size() + "\n"); //Debug
 
@@ -257,12 +301,71 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
 
                 int myEmotion=nothing;
                 int max=0;
-
+                String emotion = "";
                 for(int i=0; i<arr.length;i++) {
-                    if(arr[i]>max) {
-                        max = arr[i];
-                        myEmotion = i;
+                    if(arr[i]!=0)
+                    {
+                        if(arr[i]>max) {
+                            max = arr[i];
+                            myEmotion = i;
+                        }
+
+                        else if(arr[i] == max)
+                        {
+                            String CurrentWord = ""; //현재 가장 많은 단어가 나온 emotion
+                            String newWord = ""; //새로 등장한 단어
+
+                            if(myEmotion == 2){
+                                CurrentWord = angryList.get(angryList.size()-1);
+                            }
+                            else  if(myEmotion == 3){
+                                CurrentWord = sadnessList.get(sadnessList.size()-1);
+                            }
+                            else  if(myEmotion == 4){
+                                CurrentWord = joyList.get(joyList.size()-1);
+                            }
+                            else  if(myEmotion == 5){
+                                CurrentWord = fearList.get(fearList.size()-1);
+                            }
+                            else  if(myEmotion == 6){
+                                CurrentWord = surpriseList.get(surpriseList.size()-1);
+                            }
+                            else  if(myEmotion == 1){
+                                CurrentWord = loveList.get(loveList.size()-1);
+                            }
+
+                            if(i == 2){
+                                newWord = angryList.get(angryList.size()-1);
+                            }
+                            else  if(i == 3){
+                                newWord = sadnessList.get(sadnessList.size()-1);
+                            }
+                            else  if(i == 4){
+                                newWord = joyList.get(joyList.size()-1);
+                            }
+                            else  if(i == 5){
+                                newWord = fearList.get(fearList.size()-1);
+                            }
+                            else  if(i == 6){
+                                newWord = surpriseList.get(surpriseList.size()-1);
+                            }
+                            else  if(i == 1){
+                                newWord = loveList.get(loveList.size()-1);
+                            }
+                            //new, Current 값 저장
+
+                            int Currentindex = myText.lastIndexOf(CurrentWord);
+
+                            int newIndex = myText.lastIndexOf(newWord);
+
+                            if (newIndex>Currentindex){
+                                myEmotion = i;
+                            }
+
+                        }
+
                     }
+
                 }
 
                 CarouselPicker carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
@@ -278,7 +381,7 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                 carouselPicker.setAdapter(imageAdapter);
 
                 if(myEmotion==nothing) {
-                    emotion = "nothing";
+                    emotion = "감정을 인식하지 못했습니다";
                     carouselPicker.setCurrentItem(0);
                 }
                 else if(myEmotion==anger) {
@@ -306,43 +409,12 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
                     carouselPicker.setCurrentItem(0);
                 }
                 mFoundWordsTextView.setText("Your emotion is: " + emotion);
+                userdata.UsersEmotion=emotion;
+                System.out.println("your emotion" + userdata.UsersEmotion);
 
-                carouselPicker.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        if (position == 0) {
-                            emotion="love";
-                        }
-                        if (position == 1) {
-                            emotion = "anger";
-                        }
-                        if (position == 2) {
-                            emotion = "fear";
-                        }
-                        if (position == 3) {
-                            emotion = "joy";
-                        }
-                        if (position == 4) {
-                            emotion = "sadness";
-                        }
-                        if (position == 5) {
-                            emotion = "surprise";
-                        }
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-                });
             }
 
-
+            //감정 수정
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -350,10 +422,15 @@ public class EmotionRecognitionActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-
-
-
+    public static void PutInArr(ArrayList<String> userdata, ArrayList<String> Arr)
+    {
+        for(int i=0;i<Arr.size();i++)
+        {
+            userdata.add(Arr.get(i));
+        }
+    }
 }
+
+

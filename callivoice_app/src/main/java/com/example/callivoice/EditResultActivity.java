@@ -21,10 +21,14 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -52,6 +56,7 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,12 +79,21 @@ public class EditResultActivity extends AppCompatActivity {
     private PhotoEditor mPhotoEditor;
     private StorageReference mStorage;
     private DatabaseReference mImageDB;
+    private ArrayList <String> mTextArr = new ArrayList<>();
+    private ArrayList<String> mUsersText = new ArrayList<>();
+    private ArrayList<String> mUsersAnger = new ArrayList<>();
+    private ArrayList<String> mUsersLove = new ArrayList<>();;
+    private ArrayList<String> mUsersSurprise = new ArrayList<>();
+    private ArrayList<String> mUsersSad = new ArrayList<>();
+    private ArrayList<String> mUsersJoy = new ArrayList<>();
+    private ArrayList<String> mUsersFear = new ArrayList<>();
     private ArrayList<String> mAngerImages = new ArrayList();
     private ArrayList<String> mLoveImages = new ArrayList();
     private ArrayList<String> mFearImages = new ArrayList();
     private ArrayList<String> mSurpriseImages = new ArrayList();
     private ArrayList<String> mSadnessImages = new ArrayList();
     private ArrayList<String> mJoyImages = new ArrayList();
+    private ArrayList<String> Wordmass = new ArrayList<>();
     private final int nothing = 0;
     private final int love = 1;
     private final int anger = 2;
@@ -88,7 +102,11 @@ public class EditResultActivity extends AppCompatActivity {
     private final int fear = 5;
     private final int surprise = 6;
     private int selectedFont = R.font.basefont;
+    private String emotion;
     private String myText;
+    private String Txt;
+    private String resultTxt;
+    private int inde;
     private String mFileName;
     private String mFilePath;
     private boolean saved;
@@ -96,20 +114,201 @@ public class EditResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        final CalliVoice userdata = (CalliVoice)getApplication();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_result);
 
         final Typeface mSetFont = ResourcesCompat.getFont(EditResultActivity.this, selectedFont);
         Intent intent = getIntent();
-        final String emotion = intent.getStringExtra("emotion");
+
         myText = intent.getStringExtra("text");
+
+        //emotion = intent.getStringExtra("emotion");
+        emotion = userdata.UsersEmotion;
+        mUsersText = userdata.UsersText;
+        mUsersAnger = userdata.UsersAnger;
+        mUsersFear = userdata.UsersFear;
+        mUsersJoy = userdata.UsersJoy;
+        mUsersLove = userdata.UsersLove;
+        mUsersSurprise = userdata.UsersSurprise;
+        mUsersSad = userdata.UsersSad;
+
+
+        System.out.println("emotion is "+ emotion);
+
+        final TextView tv = (TextView)findViewById(R.id.tv); //임시로 보여주기
+
+
+        resultTxt = "";
+        myText = intent.getStringExtra("text");
+        int textL = 0;
+        int []WhereColorChange = new int[75];
+        Arrays.fill(WhereColorChange,999);
+        inde = 0;
+        System.out.println("inde : "+inde);
+        int color = Color.RED;
+        for(int i=0;i<mUsersText.size();i++)
+        {
+            System.out.println(mUsersText);
+            int FindWordIndex = 0;
+            String word = mUsersText.get(i);
+
+            if(emotion == "love")
+            {
+                String keyword = mUsersLove.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    System.out.println("keyword is "+keyword);
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            if(emotion == "anger")
+            {
+                String keyword = mUsersAnger.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    System.out.println("keyword is "+keyword);
+
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            if(emotion == "joy")
+            {
+                String keyword = mUsersJoy.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            if(emotion == "sadness")
+            {
+                String keyword = mUsersSad.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    System.out.println("keyword is "+keyword);
+
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            if(emotion == "surprise")
+            {
+                String keyword = mUsersSurprise.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    System.out.println("keyword is "+keyword);
+
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            if(emotion == "fear")
+            {
+                String keyword = mUsersFear.get(FindWordIndex);
+
+                if(word.contains(keyword))
+                {
+                    System.out.println("keyword is "+keyword);
+
+                    WhereColorChange[inde*2] = textL+word.indexOf(keyword);
+                    WhereColorChange[inde*2+1] = textL+word.indexOf(keyword)+keyword.length();
+
+                    FindWordIndex ++;
+                    inde +=1;
+                }
+            }
+
+            textL =textL+mUsersText.get(i).length()+1;
+            resultTxt = resultTxt+word+" ";
+            System.out.println("resultTxt is "+ resultTxt);
+
+            if(i == mUsersText.size()-1)
+            {
+                Wordmass.add(resultTxt);
+                resultTxt="";
+                System.out.println("Complete");
+            }
+
+            else if(resultTxt.length()+mUsersText.get(i+1).length() > 10)
+            {
+                System.out.println(resultTxt.length()+mUsersText.get(i+1).length());
+                Wordmass.add(resultTxt);
+                resultTxt="";
+                System.out.println("Complete");
+            }
+        }
+
+
+
+
+        //myText = intent.getStringExtra("text");
+
+        System.out.println("text is "+myText);
+        System.out.println("textmass is " + Wordmass);
+        System.out.println("colorIndex is "+ WhereColorChange);
+
+        SpannableStringBuilder Result = new SpannableStringBuilder(myText);
+
+        ChangeColor(Result,WhereColorChange,color,inde);
+
+        inde =0;
+
+        tv.append(Result);
+
+        mPhotoEditorView = findViewById(R.id.photoEditorView);
+
+        mPhotoEditor = new PhotoEditor.Builder(this,mPhotoEditorView).setPinchTextScalable(true).build();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mImageDB = FirebaseDatabase.getInstance().getReference().child("Images");
+        TextView mCalliText = findViewById(R.id.calliTextView);
+
+        //tv.setText(Html.fromHtml(resultTxt));
+        resultTxt ="";//결과값 초기화
+
+        mBackBtn = (Button) findViewById(R.id.back);
+        mFontBtn = (Button) findViewById(R.id.font);
+        mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
+
+
+        String callitext = intent.getStringExtra("CALLITEXT_KEY");
+        mCalliText.setText(callitext);
 
         mPhotoEditorView = findViewById(R.id.photoEditorView);
 
         mPhotoEditor = new PhotoEditor.Builder(this, mPhotoEditorView).setPinchTextScalable(true).build();
         mStorage = FirebaseStorage.getInstance().getReference();
         mImageDB = FirebaseDatabase.getInstance().getReference().child("Images");
-        TextView mCalliText = findViewById(R.id.calliTextView);
+
+        resultTxt = "";
 
         mFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "callivoice";
         mFileName = mFilePath + "/image" + System.currentTimeMillis() + ".jpg";
@@ -125,7 +324,6 @@ public class EditResultActivity extends AppCompatActivity {
         mEmoticonBtn = (Button) findViewById(R.id.imoticon);
 
 
-        String callitext = intent.getStringExtra("CALLITEXT_KEY");
         mCalliText.setText(callitext);
 
         mImageDB.addValueEventListener(new ValueEventListener() {
@@ -158,7 +356,8 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    //mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    PutOnTxt(Wordmass);
                     Picasso.get().load(mFearImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
@@ -173,7 +372,8 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    //mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    PutOnTxt(Wordmass);
                     Picasso.get().load(mLoveImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
@@ -188,7 +388,8 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    //mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    PutOnTxt(Wordmass);
                     Picasso.get().load(mSadnessImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
@@ -204,7 +405,8 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    //mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    PutOnTxt(Wordmass);
                     Picasso.get().load(mSurpriseImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
 
@@ -219,7 +421,8 @@ public class EditResultActivity extends AppCompatActivity {
                         }
                     }
                     randomImage = (int) (Math.random() * imgCount + 1);
-                    mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    //mPhotoEditor.addText(myText, Color.rgb(255, 255, 255));
+                    PutOnTxt(Wordmass);
                     Picasso.get().load(mJoyImages.get(randomImage - 1)).into(mPhotoEditorView.getSource());
                 }
                 System.out.println(imgCount);
@@ -229,7 +432,11 @@ public class EditResultActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+            public void onBackPressed(){
+
+            }
         });
+
 
 
         mBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -291,6 +498,7 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
 
+
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -316,6 +524,12 @@ public class EditResultActivity extends AppCompatActivity {
                 startActivity(chooser);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Wordmass.clear();
     }
 
     public void displayPopupFont() {
@@ -594,6 +808,18 @@ public class EditResultActivity extends AppCompatActivity {
         return mutableBitmap;
     }
 
+    public static void ChangeColor(SpannableStringBuilder Result, int [] array, int color, int index)
+    {
+        for(int i=0;i<index;i++)
+        {
+            Result.setSpan(new
+                            ForegroundColorSpan(color),array[i*2],array[i*2+1],
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        }
+
+    }
+
 
     public void displayPopupEG(final String emotion) {
         DisplayMetrics dm = new DisplayMetrics();
@@ -712,6 +938,29 @@ public class EditResultActivity extends AppCompatActivity {
                 pw.dismiss();
             }
         });
+    }
+
+    public void PutOnTxt(ArrayList txt)
+    {
+        PutOnTxt(null, txt);
+    }
+
+    public void PutOnTxt(@Nullable Typeface textTypeface, ArrayList<String> txt)
+    {
+        String word = txt.get(0);
+
+        for(int i =1;i<txt.size();i++)
+        {
+            word=word+System.lineSeparator()+txt.get(i);
+        }
+        if(textTypeface != null)
+        {
+            mPhotoEditor.addText(textTypeface, word,Color.rgb(255,255,255));
+        }
+        else
+        {
+            mPhotoEditor.addText(word,Color.rgb(255,255,255));
+        }
     }
 
     public void saveImage()

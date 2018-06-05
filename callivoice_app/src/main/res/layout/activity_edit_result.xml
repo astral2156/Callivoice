@@ -80,5 +80,12 @@
         android:layout_alignParentTop="true"
         android:text="TextView" />
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="123dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/save"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
