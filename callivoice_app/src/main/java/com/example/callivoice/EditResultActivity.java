@@ -295,19 +295,9 @@ public class EditResultActivity extends AppCompatActivity {
         //tv.setText(Html.fromHtml(resultTxt));
         resultTxt ="";//결과값 초기화
 
-        mBackBtn = (Button) findViewById(R.id.back);
-        mFontBtn = (Button) findViewById(R.id.font);
-        mEmotionGalleryBtn = (Button) findViewById(R.id.emotionGalleryBtn);
-
 
         String callitext = intent.getStringExtra("CALLITEXT_KEY");
         mCalliText.setText(callitext);
-
-        mPhotoEditorView = findViewById(R.id.photoEditorView);
-
-        mPhotoEditor = new PhotoEditor.Builder(this, mPhotoEditorView).setPinchTextScalable(true).build();
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mImageDB = FirebaseDatabase.getInstance().getReference().child("Images");
 
         resultTxt = "";
 
