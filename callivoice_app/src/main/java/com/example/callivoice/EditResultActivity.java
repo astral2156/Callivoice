@@ -578,7 +578,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.thefaceshop;
                 Typeface mTheFaceShopTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mTheFaceShopTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mTheFaceShopTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mTheFaceShopTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -588,7 +589,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.nanumbrush;
                 Typeface mNanumBrushTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mNanumBrushTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mNanumBrushTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mNanumBrushTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -599,7 +601,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.seoulhangang;
                 Typeface mSeoulHangangTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mSeoulHangangTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mSeoulHangangTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mSeoulHangangTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -609,7 +612,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.menbal;
                 Typeface mMenbalTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mMenbalTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mMenbalTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mMenbalTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -619,7 +623,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.leesunsin;
                 Typeface mLeeSunSinTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mLeeSunSinTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mLeeSunSinTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mLeeSunSinTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -629,7 +634,8 @@ public class EditResultActivity extends AppCompatActivity {
                 selectedFont = R.font.bingrae;
                 Typeface mBingraeTf = ResourcesCompat.getFont(EditResultActivity.this,selectedFont);
                 mPhotoEditor.clearAllViews();
-                mPhotoEditor.addText(mBingraeTf, myText, Color.rgb(255,255,255));
+                //mPhotoEditor.addText(mBingraeTf, myText, Color.rgb(255,255,255));
+                PutOnTxt(mBingraeTf,Wordmass);
                 pw.dismiss();
             }
         });
@@ -906,12 +912,6 @@ public class EditResultActivity extends AppCompatActivity {
         });
 
     }
-    /*public void completeBtnClicked(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-*/
 
 
 }
