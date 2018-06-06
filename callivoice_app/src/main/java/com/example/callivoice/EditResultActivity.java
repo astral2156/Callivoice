@@ -91,6 +91,7 @@ public class EditResultActivity extends AppCompatActivity {
     private Button mSaveBtn;
     private Button mShareBtn;
     private Button mEmoticonBtn;
+    private Button mCompleteBtn;
 
     final Context context = this;
     public static PhotoEditorView mPhotoEditorView;
@@ -460,6 +461,7 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
 
+
         mFontBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -513,6 +515,7 @@ public class EditResultActivity extends AppCompatActivity {
                 startActivity(chooser);
             }
         });
+
     }
 
     public void displayPopupFont() {
@@ -869,6 +872,11 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void completeBtnClicked(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 
