@@ -317,6 +317,8 @@ public class EditResultActivity extends AppCompatActivity {
         mSaveBtn = (Button) findViewById(R.id.save);
         mShareBtn = (Button) findViewById(R.id.share);
         mEmoticonBtn = (Button) findViewById(R.id.imoticon);
+        mCompleteBtn = (Button) findViewById(R.id.completeBtn);
+
 
 
 
@@ -461,6 +463,37 @@ public class EditResultActivity extends AppCompatActivity {
             }
         });
 
+        mCompleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                AlertDialog.Builder exitDialogBuilder = new AlertDialog.Builder(context);
+                exitDialogBuilder.setTitle("완료");
+                exitDialogBuilder.setMessage("메인 화면으로 돌아가시겠습니까?").setCancelable(false)
+                        .setPositiveButton("완료",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent intent = new Intent(EditResultActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                })
+                        .setNegativeButton("취소",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                });
+
+                AlertDialog exitDialog = exitDialogBuilder.create();
+
+                exitDialog.show();
+
+            }
+        });
 
         mFontBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -873,11 +906,12 @@ public class EditResultActivity extends AppCompatActivity {
         });
 
     }
-    public void completeBtnClicked(View view)
+    /*public void completeBtnClicked(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+*/
 
 
 }
