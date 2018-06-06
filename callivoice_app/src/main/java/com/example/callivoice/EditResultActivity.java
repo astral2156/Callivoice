@@ -606,7 +606,7 @@ public class EditResultActivity extends AppCompatActivity {
         });
     }
 
-    public void displayPopupEmoji() {// 수정하기 kdy
+    public void displayPopupEmoji() {
 
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -640,7 +640,6 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.love1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -650,7 +649,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.gloom1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -661,7 +659,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -673,7 +670,6 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -683,7 +679,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.shy1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -694,7 +689,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.sleep2);
                 Bitmap bitmap = drawable.getBitmap();
@@ -706,7 +700,6 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile4);
                 Bitmap bitmap = drawable.getBitmap();
@@ -716,7 +709,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile2);
                 Bitmap bitmap = drawable.getBitmap();
@@ -727,7 +719,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.smile3);
                 Bitmap bitmap = drawable.getBitmap();
@@ -739,7 +730,6 @@ public class EditResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -749,7 +739,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.sleep1);
                 Bitmap bitmap = drawable.getBitmap();
@@ -760,7 +749,6 @@ public class EditResultActivity extends AppCompatActivity {
         mChooseEmojiBtn12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPhotoEditor.addText(myText,Color.rgb(255,255,255));
                 pw.dismiss();
                 BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.anger2);
                 Bitmap bitmap = drawable.getBitmap();
