@@ -12,28 +12,18 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bgmOnOff"
+        android:layout_above="@id/appRead"
         android:layout_centerHorizontal="true"
         android:text="환경 설정"
         android:textSize="30sp"/>
 
-    <Button
-        android:id="@+id/bgmOnOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="300dp"
-        android:ems="10"
-        android:hint="배경음 ON / OFF"
-        android:paddingLeft="15dp" />
     <Button
         android:id="@+id/appRead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="300dp"
         android:ems="10"
         android:hint="앱 사용 방법"
         android:paddingLeft="15dp" />
@@ -44,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="250dp"
         android:ems="10"
         android:hint="내 정보"
         android:paddingLeft="15dp" />
@@ -55,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="로그아웃"
         android:paddingLeft="15dp" />

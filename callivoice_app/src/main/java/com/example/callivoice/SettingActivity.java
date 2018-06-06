@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private Button bgmOnOff;
     private Button appRead;
     private Button UserInfo;
     private Button LogoutBtn;
