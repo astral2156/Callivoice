@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,6 +31,8 @@ public class EmotionGalleryActivity extends AppCompatActivity {
     public static RecyclerAdapter adapter;
     public static ArrayList<String> images = new ArrayList<>();
     public static String emotion;
+    private Button mCloseBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +128,18 @@ public class EmotionGalleryActivity extends AppCompatActivity {
 
             }
         });
+
+        mCloseBtn = (Button) findViewById(R.id.cancelBtn);
+        mCloseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
     }
+
+
 
 }
